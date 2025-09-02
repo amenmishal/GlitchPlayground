@@ -3,151 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTA 5 Glitches & Tutorials 🚀</title>
-  <link rel="stylesheet" href="style.css">
+  <title>GTA Glitch Playground - Game</title>
   <style>
     body {
+      font-family: 'Arial', sans-serif;
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(270deg, #0f0f0f, #1a0033, #001133, #33001a);
-      background-size: 800% 800%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
+      padding: 0;
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #111, #222);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: white;
+      text-align: center;
     }
+
     @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
+
     header {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff8800;
+      text-shadow: 0 0 10px #ff8800;
+    }
+
+    canvas {
+      display: block;
+      margin: 20px auto;
+      background: black;
+      border: 2px solid cyan;
+    }
+
+    #score {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .glitch-section {
+      margin: 40px auto;
+      max-width: 1000px;
+      padding: 20px;
+    }
+
+    .glitch-card {
+      background: rgba(20, 20, 20, 0.9);
+      border: 2px solid #ff00ff;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
+      text-align: left;
+      box-shadow: 0 0 15px #ff00ff55;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .glitch-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #ff00ffcc;
+    }
+
+    .glitch-card h3 {
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 15px;
+      font-size: 14px;
       background: rgba(0,0,0,0.8);
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 2rem;
-      color: #ff8800;
-      text-shadow: 0 0 10px #ff5500, 0 0 20px #ff2200;
-    }
-    .glitch-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 2rem;
-    }
-    .card {
-      background: rgba(20,20,20,0.9);
-      border-radius: 15px;
-      padding: 1.5rem;
-      box-shadow: 0 0 15px rgba(255,100,0,0.5);
-      transition: transform 0.2s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255,120,0,0.8);
-    }
-    .card h2 {
-      margin-top: 0;
-      color: #ff8800;
-    }
-    .steps {
-      display: none;
-      margin-top: 10px;
-      background: rgba(0,0,0,0.6);
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .warning {
-      margin: 2rem;
-      padding: 1rem;
-      border: 2px solid red;
-      background: rgba(255,0,0,0.1);
-      color: #ff5555;
-      text-align: center;
-      border-radius: 10px;
-      text-shadow: 0 0 5px #ff0000;
     }
   </style>
 </head>
 <body>
-  <header>GTA 5 Glitches & Tutorials 🚀</header>
+  <header>🎮 GTA Glitch Playground - Mini Game + Tutorials</header>
 
-  <section class="glitch-container">
-
-    <div class="card" onclick="toggleSteps(this)">
-      <h2>💰 Unlimited Money Glitch</h2>
-      <p>Duplicate cars and sell them for profit.</p>
-      <div class="steps">
-        <ol>
-          <li>Go to your garage with a friend.</li>
-          <li>Duplicate an Elegy RH8 or similar car.</li>
-          <li>Modify and sell for money.</li>
-          <li>Repeat for fast cash.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="card" onclick="toggleSteps(this)">
-      <h2>🚗 Car Duplication Glitch</h2>
-      <p>Copy any car in your garage.</p>
-      <div class="steps">
-        <ol>
-          <li>Drive the car outside.</li>
-          <li>Have your friend join your session.</li>
-          <li>Park, glitch into garage, duplicate.</li>
-          <li>Now you own 2 cars.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="card" onclick="toggleSteps(this)">
-      <h2>🎭 God Mode Glitch</h2>
-      <p>Become invincible for a session.</p>
-      <div class="steps">
-        <ol>
-          <li>Enter Creator Mode.</li>
-          <li>Switch to Online quickly.</li>
-          <li>Activate heist prep, cancel.</li>
-          <li>You’re now in god mode.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="card" onclick="toggleSteps(this)">
-      <h2>🚀 Unlimited RP Glitch</h2>
-      <p>Rank up super fast.</p>
-      <div class="steps">
-        <ol>
-          <li>Join a mission with friends.</li>
-          <li>Repeat objectives quickly.</li>
-          <li>Farm RP endlessly.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="card" onclick="toggleSteps(this)">
-      <h2>👻 Invisibility Glitch</h2>
-      <p>Become invisible to enemies.</p>
-      <div class="steps">
-        <ol>
-          <li>Equip outfit with mask + glasses.</li>
-          <li>Use style menu to glitch outfit.</li>
-          <li>Save as outfit, reload.</li>
-          <li>You are invisible!</li>
-        </ol>
-      </div>
-    </div>
-
-  </section>
-
-  <div class="warning">
-    ⚠️ Use glitches at your own risk! Don’t overuse them in GTA Online to avoid bans.  
-  </div>
+  <p id="score">Score: 0</p>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
 
   <script>
-    function toggleSteps(card) {
-      let steps = card.querySelector(".steps");
-      steps.style.display = steps.style.display === "block" ? "none" : "block";
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const player = { x: 180, y: 360, width: 40, height: 40, color: "cyan" };
+    let blocks = [];
+    let score = 0;
+    let gameOver = false;
+    let speed = 5; // starting fall speed
+
+    // Controls
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && player.x > 0) player.x -= 15;
+      if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 15;
+    });
+
+    // Spawn falling blocks faster
+    function spawnBlock() {
+      const x = Math.floor(Math.random() * (canvas.width - 40));
+      blocks.push({ x, y: 0, width: 40, height: 40, color: "red" });
     }
+
+    function update() {
+      if (gameOver) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw player
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+
+      // Draw & move blocks
+      for (let i = 0; i < blocks.length; i++) {
+        const b = blocks[i];
+        b.y += speed;
+        ctx.fillStyle = b.color;
+        ctx.fillRect(b.x, b.y, b.width, b.height);
+
+        // Collision
+        if (
+          player.x < b.x + b.width &&
+          player.x + player.width > b.x &&
+          player.y < b.y + b.height &&
+          player.y + player.height > b.y
+        ) {
+          gameOver = true;
+          document.getElementById("score").innerText = "💀 Game Over! Final Score: " + score;
+        }
+      }
+
+      // Increase difficulty over time
+      score++;
+      if (score % 200 === 0) speed += 1; // blocks fall faster every 200 points
+      if (score % 300 === 0) spawnBlock(); // extra chaos
+
+      document.getElementById("score").innerText = "Score: " + score;
+
+      requestAnimationFrame(update);
+    }
+
+    setInterval(spawnBlock, 700); // blocks every 0.7 sec
+    update();
   </script>
+
+  <!-- GTA 5 Glitch Tutorials -->
+  <section class="glitch-section">
+    <h2>🔥 GTA 5 Glitch Tutorials</h2>
+
+    <div class="glitch-card">
+      <h3>💰 Unlimited Money Glitch</h3>
+      <p>Replay the Cayo Perico heist with a friend. Disconnect after looting to restart instantly. Risk: Medium, Ban chance: Low.</p>
+    </div>
+
+    <div class="glitch-card">
+      <h3>🚗 Car Duplication</h3>
+      <p>Park an Elegy RH8 in your garage, replace it with a custom car using a friend. Sell duplicates for easy cash. Risk: High.</p>
+    </div>
+
+    <div class="glitch-card">
+      <h3>👻 God Mode Glitch</h3>
+      <p>Trigger by entering Casino cutscene + quick job. You’ll be invincible until you leave session. Risk: Medium.</p>
+    </div>
+
+    <div class="glitch-card">
+      <h3>🚀 Speed Boost Glitch</h3>
+      <p>Boost speed by switching between passive mode and interaction menu glitching. Works online races. Risk: Low.</p>
+    </div>
+
+    <div class="glitch-card">
+      <h3>🎮 Solo Public Lobby</h3>
+      <p>Pull Ethernet cable for 10s → reconnect. You’ll be alone in lobby with full businesses running. Risk: None.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 GlitchPlayground 🚀 | GTA 5 Glitches + GTA 6 Leaks
+  </footer>
 </body>
 </html>
