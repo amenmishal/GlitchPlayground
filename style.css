@@ -1,0 +1,104 @@
+/* ========== General Reset ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ========== Body Background (Neon Gradient) ========== */
+body {
+  background: linear-gradient(270deg, #ff0080, #7928ca, #00eaff, #00ff80);
+  background-size: 800% 800%;
+  animation: gradientMove 20s ease infinite;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========== Navbar ========== */
+nav {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: cyan;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080;
+}
+
+/* ========== News / Cards ========== */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px cyan;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff0080, 0 0 30px cyan;
+}
+
+.card h2 {
+  color: #00eaff;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #ddd;
+}
+
+/* ========== Footer ========== */
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* ========== Mobile Support ========== */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  nav a {
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
