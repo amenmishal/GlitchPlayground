@@ -1,44 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GTA Hub - News & Leaks</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlitchPlayground - News</title>
   <style>
-    body { margin:0; font-family:Arial,sans-serif; background:#0d0d0d; color:#fff; transition:0.5s; }
-    header { padding:20px; background:#111; box-shadow:0 4px 10px rgba(0,0,0,0.5); text-align:center; }
-    h1 { color:#00ffcc; margin:0; }
-    .back-link { display:inline-block; margin:20px; padding:10px 20px; background:#00ffcc; color:#000; text-decoration:none; border-radius:8px; font-weight:bold; }
-    .post { background:#1a1a1a; margin:20px auto; padding:20px; border-radius:12px; width:90%; max-width:800px; box-shadow:0 0 10px rgba(0,255,204,0.4); }
-    .post h3 { margin-top:0; color:#00ffcc; }
-    .post small { display:block; color:#888; margin-bottom:10px; }
-    .light-mode { background:#f4f4f4; color:#000; }
-    .light-mode header { background:#ddd; }
-    .light-mode .post { background:#fff; color:#000; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    .news-item {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .news-item h2 {
+      margin-top: 0;
+    }
+    a {
+      color: #f90;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
   <header>
-    <h1>📰 GTA Hub - All News</h1>
-    <a href="index.html" class="back-link">⬅ Back to Home</a>
+    <nav style="background:#111; padding: 15px; text-align:center;">
+      <a href="index.html" style="color:#fff; margin:0 15px;">Home</a>
+      <a href="news.html" style="color:#fff; margin:0 15px;">News</a>
+      <a href="game.html" style="color:#fff; margin:0 15px;">Games</a>
+      <a href="contact.html" style="color:#fff; margin:0 15px;">Contact</a>
+    </nav>
   </header>
 
-  <div class="post">
-    <h3>GTA 6 Leak - New Map Details</h3>
-    <small>Sept 2, 2025</small>
-    <p>New leaks suggest the GTA 6 map is twice the size of GTA V, featuring Vice City and surrounding areas...</p>
+  <div class="container">
+    <h1>All News & Leaks 📰</h1>
+
+    <!-- News List -->
+    <div class="news-item">
+      <h2>🔥 GTA 6 New Trailer Leak</h2>
+      <p>The second trailer for GTA 6 was spotted online before Rockstar’s official release. 
+      It showcases Vice City nightlife, jet skis, and improved police AI. 
+      Fans speculate a release in early 2026. Stay tuned!</p>
+    </div>
+
+    <div class="news-item">
+      <h2>💰 Unlimited Money Glitch Found</h2>
+      <p>A new duplication glitch allows players to repeat heist rewards. 
+      Works online but may risk bans if abused too much. Try at your own risk!</p>
+    </div>
+
+    <div class="news-item">
+      <h2>🎮 GTA 5 Single Player Bug</h2>
+      <p>Some players reported NPCs randomly disappearing in story mode after the new patch. 
+      Rockstar is expected to release a fix soon.</p>
+    </div>
+
   </div>
 
-  <div class="post">
-    <h3>GTA 5 Glitch - Easy RP Farming</h3>
-    <small>Aug 25, 2025</small>
-    <p>This glitch allows players to gain RP quickly by repeating a specific mission setup...</p>
-  </div>
+  <!-- Footer -->
+  <footer style="background:#111; color:#aaa; text-align:center; padding:15px; margin-top:20px;">
+    <p>© 2025 GlitchPlayground | Made with ❤️ on GitHub Pages</p>
+  </footer>
 
-  <div class="post">
-    <h3>Rockstar Update Patch Notes</h3>
-    <small>Aug 10, 2025</small>
-    <p>Rockstar released a new patch that fixes money exploits but accidentally introduced a new duplication glitch...</p>
-  </div>
 </body>
 </html>
