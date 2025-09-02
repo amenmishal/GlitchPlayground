@@ -3,47 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTA 6 News & Leaks - GlitchPlayground 🚀</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>GTA 6 News & Leaks</title>
+  <style>
+    /* 🌌 Background Animation */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #1a1a1a, #2a003f, #001f3f, #0a0a0a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🏷️ Header */
+    header {
+      background: rgba(0,0,0,0.7);
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff9900;
+      text-shadow: 0 0 10px #ff9900;
+    }
+
+    /* 🧭 Navbar */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(0,0,0,0.6);
+      padding: 12px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      text-decoration: underline;
+    }
+
+    /* 📦 Container */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    /* 📰 News Cards */
+    .news-card {
+      background: rgba(0,0,0,0.65);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.25);
+      transition: 0.3s ease-in-out;
+      backdrop-filter: blur(4px);
+    }
+    .news-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(0,255,255,0.7);
+    }
+    .news-card h2 {
+      color: #ff9900;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px rgba(255,153,0,0.6);
+    }
+    .news-card p {
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    /* 📌 Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.7);
+      margin-top: 30px;
+      font-size: 14px;
+      color: #bbb;
+    }
+  </style>
 </head>
 <body>
+  <!-- 🚀 Header -->
   <header>
-    <nav>
-      <h1 class="logo">GlitchPlayground 🚀</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="news.html" class="active">News</a></li>
-        <li><a href="game.html">Glitches</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    🚀 GTA 6 News & Leaks
   </header>
 
-  <section class="hero">
-    <h2>🔥 Latest GTA 6 News & Leaks</h2>
-    <p>Stay updated with verified leaks, trailers, and release updates.</p>
-  </section>
+  <!-- 🧭 Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="game.html">Glitches & Game</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <main class="cards">
-    <div class="card">
-      <h3>🚀 GTA 6 Release Date Leak</h3>
-      <p>Rumors suggest GTA 6 may drop in <strong>2025</strong>. Multiple insiders have hinted at a March–April release window.</p>
+  <!-- 📰 News Content -->
+  <div class="container">
+    <div class="news-card">
+      <h2>🔥 GTA 6 Trailer 2 Breakdown</h2>
+      <p>Rockstar dropped the second official trailer, showing Vice City in ultra-realistic detail! Players spotted new weapons, car customization, and even alligators roaming the swamps.</p>
     </div>
 
-    <div class="card">
-      <h3>🌆 Vice City Map Confirmed</h3>
-      <p>Rockstar trailer confirms a massive Vice City with evolving locations and dynamic weather.</p>
+    <div class="news-card">
+      <h2>🚀 Release Date Leak</h2>
+      <p>A trusted insider claims GTA 6 will launch in <b>Fall 2025</b>. Rockstar has yet to confirm, but the rumor aligns with their financial projections.</p>
     </div>
 
-    <div class="card">
-      <h3>🎥 GTA 6 Trailer 2 Breakdown</h3>
-      <p>New characters, wild storylines, and improved AI spotted in Trailer 2.</p>
+    <div class="news-card">
+      <h2>💰 New Money System</h2>
+      <p>Leaks reveal a dynamic economy — prices for cars, weapons, and properties may rise or fall depending on in-game events. Players can even invest in Vice City’s stock market.</p>
     </div>
 
-    <div class="card">
-      <h3>💰 Economy & Online Mode</h3>
-      <p>Leaks suggest GTA 6 Online will feature <strong>dynamic stock markets</strong> and <strong>cryptocurrency missions</strong>.</p>
+    <div class="news-card">
+      <h2>👻 Mysterious Ghost Easter Egg</h2>
+      <p>Dataminers found references to a spooky hidden mission in the game files. Could GTA 6 bring back paranormal side quests like San Andreas’ myths?</p>
     </div>
-  </main>
+  </div>
+
+  <!-- 📌 Footer -->
+  <footer>
+    © 2025 GlitchPlayground 🚀 | All GTA 6 leaks & news are community-sourced.
+  </footer>
 </body>
 </html>
