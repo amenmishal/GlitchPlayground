@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA 5 Glitches & Tutorials 🚀</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #0f0f0f, #1a0033, #001133, #33001a);
+      background-size: 800% 800%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    header {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 2rem;
+      color: #ff8800;
+      text-shadow: 0 0 10px #ff5500, 0 0 20px #ff2200;
+    }
+    .glitch-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 2rem;
+    }
+    .card {
+      background: rgba(20,20,20,0.9);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 0 15px rgba(255,100,0,0.5);
+      transition: transform 0.2s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255,120,0,0.8);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #ff8800;
+    }
+    .steps {
+      display: none;
+      margin-top: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .warning {
+      margin: 2rem;
+      padding: 1rem;
+      border: 2px solid red;
+      background: rgba(255,0,0,0.1);
+      color: #ff5555;
+      text-align: center;
+      border-radius: 10px;
+      text-shadow: 0 0 5px #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <header>GTA 5 Glitches & Tutorials 🚀</header>
+
+  <section class="glitch-container">
+
+    <div class="card" onclick="toggleSteps(this)">
+      <h2>💰 Unlimited Money Glitch</h2>
+      <p>Duplicate cars and sell them for profit.</p>
+      <div class="steps">
+        <ol>
+          <li>Go to your garage with a friend.</li>
+          <li>Duplicate an Elegy RH8 or similar car.</li>
+          <li>Modify and sell for money.</li>
+          <li>Repeat for fast cash.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleSteps(this)">
+      <h2>🚗 Car Duplication Glitch</h2>
+      <p>Copy any car in your garage.</p>
+      <div class="steps">
+        <ol>
+          <li>Drive the car outside.</li>
+          <li>Have your friend join your session.</li>
+          <li>Park, glitch into garage, duplicate.</li>
+          <li>Now you own 2 cars.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleSteps(this)">
+      <h2>🎭 God Mode Glitch</h2>
+      <p>Become invincible for a session.</p>
+      <div class="steps">
+        <ol>
+          <li>Enter Creator Mode.</li>
+          <li>Switch to Online quickly.</li>
+          <li>Activate heist prep, cancel.</li>
+          <li>You’re now in god mode.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleSteps(this)">
+      <h2>🚀 Unlimited RP Glitch</h2>
+      <p>Rank up super fast.</p>
+      <div class="steps">
+        <ol>
+          <li>Join a mission with friends.</li>
+          <li>Repeat objectives quickly.</li>
+          <li>Farm RP endlessly.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleSteps(this)">
+      <h2>👻 Invisibility Glitch</h2>
+      <p>Become invisible to enemies.</p>
+      <div class="steps">
+        <ol>
+          <li>Equip outfit with mask + glasses.</li>
+          <li>Use style menu to glitch outfit.</li>
+          <li>Save as outfit, reload.</li>
+          <li>You are invisible!</li>
+        </ol>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="warning">
+    ⚠️ Use glitches at your own risk! Don’t overuse them in GTA Online to avoid bans.  
+  </div>
+
+  <script>
+    function toggleSteps(card) {
+      let steps = card.querySelector(".steps");
+      steps.style.display = steps.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
