@@ -1,82 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlitchPlayground - News</title>
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-    .news-item {
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    .news-item h2 {
-      margin-top: 0;
-    }
-    a {
-      color: #f90;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GlitchPlayground - News & Leaks</title>
+<style>
+  :root{
+    --text:#ffffff; --muted:#c9c9c9; --accent:#ff9d00; --accent2:#00f0ff;
+    --card:#121212cc; --shadow:0 10px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.02);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
+    background: radial-gradient(1000px 600px at 10% -10%, #5a00ff 0%, transparent 40%),
+                radial-gradient(900px 700px at 110% 0%, #00b3ff 0%, transparent 45%),
+                radial-gradient(900px 700px at 50% 120%, #ff2da5 0%, transparent 45%), #0a0a0a;
+    background-size:300% 300%; animation: gradientShift 22s ease-in-out infinite;
+    overflow-x:hidden;
+  }
+  #particles{position:fixed; inset:0; z-index:-1; pointer-events:none;}
+  @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  .nav{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background: rgba(10,10,10,.55); border-bottom:1px solid rgba(255,255,255,.06);}
+  .nav-inner{max-width:1100px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-weight:800; font-size:1.15rem; text-shadow:0 0 12px rgba(255,157,0,.6);}
+  .links a{color:#fff; text-decoration:none; margin-left:18px; position:relative; font-weight:600;}
+  .links a::after{content:""; position:absolute; left:0; bottom:-6px; width:100%; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent2)); transform:scaleX(0); transform-origin:left; transition:transform .25s ease; box-shadow:0 0 12px rgba(0,240,255,.6);}
+  .links a:hover::after{transform:scaleX(1)}
+
+  .container{max-width:1100px; margin:0 auto; padding:28px 20px 60px;}
+  h1{font-size:clamp(2rem, 4.5vw, 2.6rem); margin:6px 0 12px; text-shadow:0 0 18px rgba(0,240,255,.45)}
+  .post{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:20px; box-shadow:var(--shadow); margin:16px 0; display:flex; gap:14px; animation:fade .6s ease both;}
+  .post:hover{transform: translateY(-3px); transition:.18s; border-color:rgba(0,240,255,.35); box-shadow:0 14px 36px rgba(0,0,0,.5), 0 0 30px rgba(0,240,255,.18);}
+  .icon{font-size:1.3rem}
+  .post h3{margin:2px 0 6px}
+  .post small{display:block;color:#b5b5b5;margin-bottom:6px}
+  .post p{margin:0;color:var(--muted)}
+  footer{border-top:1px solid rgba(255,255,255,.06); backdrop-filter: blur(6px); background: rgba(10,10,10,.55); color:#cfcfcf; text-align:center; padding:18px 12px;}
+  @keyframes fade{from{opacity:0; transform: translateY(8px)}to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important}}
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
-    <nav style="background:#111; padding: 15px; text-align:center;">
-      <a href="index.html" style="color:#fff; margin:0 15px;">Home</a>
-      <a href="news.html" style="color:#fff; margin:0 15px;">News</a>
-      <a href="game.html" style="color:#fff; margin:0 15px;">Games</a>
-      <a href="contact.html" style="color:#fff; margin:0 15px;">Contact</a>
-    </nav>
-  </header>
+<div id="particles"></div>
 
-  <div class="container">
-    <h1>All News & Leaks 📰</h1>
-
-    <!-- News List -->
-    <div class="news-item">
-      <h2>🔥 GTA 6 New Trailer Leak</h2>
-      <p>The second trailer for GTA 6 was spotted online before Rockstar’s official release. 
-      It showcases Vice City nightlife, jet skis, and improved police AI. 
-      Fans speculate a release in early 2026. Stay tuned!</p>
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">GlitchPlayground <span class="rocket">🚀</span></div>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="game.html">Games</a>
+      <a href="contact.html">Contact</a>
     </div>
-
-    <div class="news-item">
-      <h2>💰 Unlimited Money Glitch Found</h2>
-      <p>A new duplication glitch allows players to repeat heist rewards. 
-      Works online but may risk bans if abused too much. Try at your own risk!</p>
-    </div>
-
-    <div class="news-item">
-      <h2>🎮 GTA 5 Single Player Bug</h2>
-      <p>Some players reported NPCs randomly disappearing in story mode after the new patch. 
-      Rockstar is expected to release a fix soon.</p>
-    </div>
-
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer style="background:#111; color:#aaa; text-align:center; padding:15px; margin-top:20px;">
-    <p>© 2025 GlitchPlayground | Made with ❤️ on GitHub Pages</p>
-  </footer>
+<main class="container">
+  <h1>All News & Leaks</h1>
 
+  <article class="post" style="animation-delay:.05s;">
+    <div class="icon">🔥</div>
+    <div>
+      <h3>GTA 6 New Trailer Leak</h3>
+      <small>Sept 2, 2025</small>
+      <p>The second trailer surfaced early showing Vice City nightlife, jet skis and improved police AI. Community speculation points to an early 2026 release window.</p>
+    </div>
+  </article>
+
+  <article class="post" style="animation-delay:.12s;">
+    <div class="icon">💰</div>
+    <div>
+      <h3>Unlimited Money Glitch Found</h3>
+      <small>Aug 25, 2025</small>
+      <p>A duplication method lets players repeat heist rewards. Works online, but heavy use could trigger anti-cheat. Proceed carefully.</p>
+    </div>
+  </article>
+
+  <article class="post" style="animation-delay:.2s;">
+    <div class="icon">👻</div>
+    <div>
+      <h3>Spooky Bug After Patch</h3>
+      <small>Aug 10, 2025</small>
+      <p>Some players report NPCs vanishing in story missions after the latest update. Rockstar is expected to patch soon.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  © 2025 GlitchPlayground • Made with ❤️ on GitHub Pages
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  if (window.particlesJS) {
+    particlesJS('particles', {
+      "particles": {
+        "number": { "value": 70, "density": { "enable": true, "value_area": 900 } },
+        "color": { "value": ["#ff9d00","#00f0ff","#ff2da5"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.6, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 140, "color": "#7bd7ff", "opacity": 0.25, "width": 1 },
+        "move": { "enable": true, "speed": 1.1, "direction": "none", "out_mode": "out" }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": { "repulse": { "distance": 120, "duration": 0.3 }, "push": { "particles_nb": 4 } }
+      },
+      "retina_detect": true
+    });
+  }
+</script>
 </body>
 </html>
