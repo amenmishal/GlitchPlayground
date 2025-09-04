@@ -1,165 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glitches & Mini-Game</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game & GTA 5 Glitches</title>
   <style>
+    /* Background */
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: #fff;
+      margin: 0;
       font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #0f0f0f, #1a0033, #003366, #330033);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: cyan;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    /* Section headings */
+    h1, h2 {
+      text-align: center;
+      margin: 20px;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    /* Glitch cards */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
     .card {
-      background: rgba(0,0,0,0.85);
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      transition: 0.3s;
     }
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 25px rgba(0,255,255,0.8);
+      transform: scale(1.05);
+      box-shadow: 0 0 25px cyan;
+    }
+
+    /* Game section */
+    #gameContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
     }
     canvas {
-      display: block;
-      margin: 20px auto;
       background: black;
       border: 2px solid cyan;
       border-radius: 10px;
+      margin-bottom: 15px;
     }
+    #score {
+      font-size: 18px;
+      margin-top: 10px;
+      text-shadow: 0 0 10px lime;
+    }
+
+    /* Footer */
     footer {
-      background: rgba(0,0,0,0.6);
-      padding: 15px;
       text-align: center;
-      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 30px;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; }
+      nav a { margin: 10px 0; }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">🎮 GlitchPlayground</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="game.html">Glitches & Game</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand text-info" href="index.html">GlitchPlayground</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="game.html">Glitches</a></li>
-        <li class="nav-item"><a class="nav-link" href="news.html">GTA 6 News</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
+  <!-- GTA 5 Glitches -->
+  <h1>🔥 GTA 5 Glitch Tutorials</h1>
+  <div class="card-container">
+    <div class="card">
+      <h3>💰 Unlimited Money Glitch</h3>
+      <p>Replay Cayo Perico heist with a trick — make millions fast without bans.</p>
+    </div>
+    <div class="card">
+      <h3>🚗 Car Duplication</h3>
+      <p>Duplicate expensive cars & sell them for easy money. Works online & solo.</p>
+    </div>
+    <div class="card">
+      <h3>👻 God Mode Trick</h3>
+      <p>Go completely invincible using a simple mission glitch. Be untouchable!</p>
+    </div>
+    <div class="card">
+      <h3>🔫 Weapon Wall Breach</h3>
+      <p>Shoot enemies safely through walls in Los Santos. Great for PvP fights.</p>
+    </div>
+    <div class="card">
+      <h3>✈️ Fly Cars Mod</h3>
+      <p>Turn vehicles into flying machines with a crazy glitch!</p>
     </div>
   </div>
-</nav>
 
-<!-- Glitch Tutorials -->
-<div class="container py-5">
-  <h2 class="text-center mb-4">🔥 GTA 5 Glitch Tutorials</h2>
-  <div class="row g-4">
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h5>💰 Unlimited Money Glitch</h5>
-        <p>Duplicate cash using casino chip trick. Works in GTA Online (use at your own risk).</p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h5>🚗 Car Duplication Exploit</h5>
-        <p>Duplicate personal vehicles with arena workshop method. Sell cars for millions.</p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h5>🛡️ God Mode Trick</h5>
-        <p>Enable god mode by glitching heist setup menu. Invincible until leaving session.</p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h5>🎮 Solo Cayo Perico Replay</h5>
-        <p>Repeat the heist solo without cooldown by disconnecting at specific screen.</p>
-      </div>
-    </div>
+  <!-- Playable Game -->
+  <h2>⚡ Survive the Falling Blocks</h2>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div id="score">Score: 0</div>
   </div>
-</div>
 
-<!-- Mini-Game -->
-<div class="container text-center py-5">
-  <h2>🎮 Dodge The Blocks Game</h2>
-  <p>Use ⬅️ and ➡️ arrow keys to survive!</p>
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
-  <p id="score">Score: 0</p>
-</div>
+  <!-- Game Script -->
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const player = { x: 180, y: 360, width: 40, height: 40, color: "cyan" };
+    let blocks = [];
+    let score = 0;
+    let gameOver = false;
+    let speed = 5;
 
-<!-- Footer -->
-<footer>
-  <p>© 2025 GlitchPlayground | GTA 5 Glitches & Mini-Game</p>
-</footer>
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && player.x > 0) player.x -= 15;
+      if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 15;
+    });
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Game Script -->
-<script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
-  const player = { x: 180, y: 360, width: 40, height: 40, color: "cyan" };
-  let blocks = [];
-  let score = 0;
-  let gameOver = false;
-  let speed = 5;
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" && player.x > 0) player.x -= 20;
-    if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 20;
-  });
-
-  function spawnBlock() {
-    const x = Math.floor(Math.random() * (canvas.width - 40));
-    blocks.push({ x, y: 0, width: 40, height: 40, color: "red" });
-  }
-
-  function update() {
-    if (gameOver) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw player
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, player.width, player.height);
-
-    // Blocks
-    for (let i = 0; i < blocks.length; i++) {
-      const b = blocks[i];
-      b.y += speed;
-      ctx.fillStyle = b.color;
-      ctx.fillRect(b.x, b.y, b.width, b.height);
-
-      if (player.x < b.x + b.width &&
-          player.x + player.width > b.x &&
-          player.y < b.y + b.height &&
-          player.y + player.height > b.y) {
-        gameOver = true;
-        document.getElementById("score").innerText = "💀 Game Over! Final Score: " + score;
-      }
+    function spawnBlock() {
+      const x = Math.floor(Math.random() * (canvas.width - 40));
+      blocks.push({ x, y: 0, width: 40, height: 40, color: "red" });
     }
 
-    // Increase difficulty
-    score++;
-    if (score % 200 === 0) speed++;
-    if (score % 300 === 0) spawnBlock();
+    function update() {
+      if (gameOver) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    document.getElementById("score").innerText = "Score: " + score;
-    requestAnimationFrame(update);
-  }
+      // Player
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.width, player.height);
 
-  setInterval(spawnBlock, 700);
-  update();
-</script>
+      // Blocks
+      for (let i = 0; i < blocks.length; i++) {
+        const b = blocks[i];
+        b.y += speed;
+        ctx.fillStyle = b.color;
+        ctx.fillRect(b.x, b.y, b.width, b.height);
+
+        // Collision
+        if (
+          player.x < b.x + b.width &&
+          player.x + player.width > b.x &&
+          player.y < b.y + b.height &&
+          player.y + player.height > b.y
+        ) {
+          gameOver = true;
+          document.getElementById("score").innerText = "💀 Game Over! Final Score: " + score;
+        }
+      }
+
+      score++;
+      if (score % 200 === 0) speed += 1;
+      if (score % 300 === 0) spawnBlock();
+
+      document.getElementById("score").innerText = "Score: " + score;
+      requestAnimationFrame(update);
+    }
+
+    setInterval(spawnBlock, 700);
+    update();
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 GlitchPlayground 🚀 – GTA 5 & GTA 6 Hub</p>
+  </footer>
 </body>
 </html>
