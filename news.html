@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GTA 6 News & Leaks 🚀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GTA 6 News & Leaks</title>
   <style>
     /* Background */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
-      background: linear-gradient(-45deg, #0f0f0f, #1a0033, #003366, #330033);
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a40, #2b0033, #0d1b2a);
       background-size: 400% 400%;
       animation: gradientBG 12s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
@@ -22,108 +25,162 @@
 
     /* Navbar */
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
+      padding: 15px;
+      text-align: center;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
     }
     nav a {
       color: white;
-      text-decoration: none;
       margin: 0 15px;
+      text-decoration: none;
       font-weight: bold;
       transition: 0.3s;
     }
     nav a:hover {
-      color: cyan;
-      text-shadow: 0 0 10px cyan;
+      color: #ff00ff;
+      text-shadow: 0 0 8px #ff00ff;
     }
 
-    /* Section headings */
-    h1 {
-      text-align: center;
-      margin: 20px;
-      text-shadow: 0 0 15px orange;
-    }
-
-    /* News Cards */
-    .card-container {
+    /* News Section */
+    .news-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 40px;
+      flex: 1;
     }
-    .card {
+    .news-card {
       background: rgba(255,255,255,0.05);
+      border-radius: 12px;
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.3);
-      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px cyan;
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #ff00ff;
     }
-    .card h3 {
+    .news-card h2 {
       margin-top: 0;
-      color: cyan;
+      color: #ff9900;
+      text-shadow: 0 0 6px #ff9900;
+    }
+    .news-card p {
+      color: #ccc;
+    }
+
+    /* Countdown Box */
+    .countdown-box {
+      text-align: center;
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px #00ffff;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 15px #00ffff; }
+      50% { box-shadow: 0 0 30px #ff00ff; }
+      100% { box-shadow: 0 0 15px #00ffff; }
+    }
+    .countdown-box h2 {
+      color: #00ffff;
+      margin-bottom: 15px;
+    }
+    #countdown {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff;
     }
 
     /* Footer */
     footer {
+      background: rgba(0,0,0,0.8);
       text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.6);
-      margin-top: 30px;
+      padding: 15px;
+      margin-top: auto;
     }
 
-    /* Mobile tweaks */
-    @media (max-width: 768px) {
-      nav { flex-direction: column; }
-      nav a { margin: 10px 0; }
+    /* Mobile Support */
+    @media(max-width: 600px) {
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+      .news-container {
+        padding: 20px;
+      }
+      #countdown {
+        font-size: 1.2em;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav>
-    <div class="logo">🎮 GlitchPlayground</div>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="news.html">News</a>
-      <a href="game.html">Glitches & Game</a>
-      <a href="contact.html">Contact</a>
-    </div>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="game.html">Glitches & Game</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- News Section -->
-  <h1>🚀 GTA 6 News & Leaks</h1>
-  <div class="card-container">
-    <div class="card">
-      <h3>🌴 Vice City Returns</h3>
-      <p>Rockstar insiders confirm GTA 6 is set in Vice City with a modern twist and neon vibes.</p>
+  <!-- News Cards -->
+  <div class="news-container">
+    <div class="news-card">
+      <h2>🚀 GTA 6 Official Release Date Leaked</h2>
+      <p>Insiders suggest GTA 6 will officially launch in 2025. Rockstar hasn’t confirmed, but all signs point to a huge release.</p>
     </div>
-    <div class="card">
-      <h3>🚗 Vehicle Customization</h3>
-      <p>Leaks show new upgrade systems, including neon underglow and jet-ski modifications.</p>
+    <div class="news-card">
+      <h2>🔥 Map Expansion Rumors</h2>
+      <p>Reports indicate GTA 6 will feature Vice City plus two new surrounding islands. The world could be the biggest in GTA history.</p>
     </div>
-    <div class="card">
-      <h3>👥 Two Protagonists</h3>
-      <p>Rumors suggest a brother-sister duo as main characters, similar to Bonnie & Clyde style.</p>
+    <div class="news-card">
+      <h2>👻 AI-Powered NPCs</h2>
+      <p>Leakers claim NPCs will have dynamic conversations and behavior powered by Rockstar’s new AI engine.</p>
     </div>
-    <div class="card">
-      <h3>📅 Release Countdown</h3>
-      <p>Expected GTA 6 release: <strong>2025</strong>. Stay tuned for official updates!</p>
-    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-box">
+    <h2>⏳ Countdown to GTA 6 Release</h2>
+    <div id="countdown">Loading...</div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 GlitchPlayground 🚀 – GTA 5 & GTA 6 Hub</p>
+    <p>© 2025 GlitchPlayground 🚀 | All GTA 6 News & Leaks</p>
   </footer>
+
+  <!-- Countdown Script -->
+  <script>
+    function updateCountdown() {
+      // Set GTA 6 release date (adjust if Rockstar confirms a date)
+      const releaseDate = new Date("2025-12-31T00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = releaseDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText = "🎉 GTA 6 IS OUT NOW!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
