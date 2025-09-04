@@ -1,441 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GlitchPlayground — Glitches & Mini-Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitches & Mini-Game</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    :root{
-      --bg:#07070a;
-      --text:#e9f7ff;
-      --muted:#bfcbd6;
-      --neon1:#ff9d00;
-      --neon2:#00f0ff;
-      --card:#111214cc;
-      --glass-shadow: 0 10px 30px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.02);
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      font-family: Arial, sans-serif;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color:var(--text); background:
-        radial-gradient(900px 600px at 10% -20%, #4a00ff33 0%, transparent 35%),
-        radial-gradient(800px 500px at 110% 0%, #00b3ff2b 0%, transparent 40%),
-        linear-gradient(180deg,#06060a 0%, #0a0612 100%);
-      background-size:300% 300%;
-      animation:bgshift 20s ease-in-out infinite;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    .card {
+      background: rgba(0,0,0,0.85);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    @keyframes bgshift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-
-    /* NAV */
-    .nav{
-      position:sticky; top:0; z-index:50; background:rgba(6,6,8,.56);
-      border-bottom:1px solid rgba(255,255,255,.04); backdrop-filter:blur(8px);
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(0,255,255,0.8);
     }
-    .nav-inner{max-width:1100px; margin:auto; padding:12px 18px; display:flex; justify-content:space-between; align-items:center;}
-    .logo{font-weight:800; letter-spacing:.3px; text-shadow:0 0 12px rgba(255,157,0,.45)}
-    .links a{color:var(--text); margin-left:18px; font-weight:700; text-decoration:none; position:relative; padding:6px 0}
-    .links a::after{content:""; position:absolute; left:0; bottom:-6px; width:100%; height:2px; background:linear-gradient(90deg,var(--neon1),var(--neon2)); transform:scaleX(0); transform-origin:left; transition:transform .22s ease}
-    .links a:hover::after{transform:scaleX(1)}
-    .links a.active{color:var(--neon2); text-shadow:0 0 10px rgba(0,240,255,.25)}
-
-    /* container */
-    .wrap{max-width:1100px; margin:28px auto; padding:0 18px 80px;}
-
-    /* tabs */
-    .tabs{display:flex; gap:12px; margin-bottom:18px;}
-    .tab-btn{
-      background:transparent; border:1px solid rgba(255,255,255,.04);
-      padding:10px 14px; border-radius:10px; color:var(--text); font-weight:700; cursor:pointer;
-      box-shadow:var(--glass-shadow);
+    canvas {
+      display: block;
+      margin: 20px auto;
+      background: black;
+      border: 2px solid cyan;
+      border-radius: 10px;
     }
-    .tab-btn.active{ background:linear-gradient(90deg,var(--neon1),var(--neon2)); color:#071017; box-shadow:0 12px 40px rgba(0,240,255,.12),0 0 20px rgba(255,157,0,.18) }
-
-    /* layout */
-    .columns{display:grid; grid-template-columns: 1fr; gap:18px;}
-    @media(min-width:920px){ .columns{grid-template-columns: 1fr 420px;} }
-
-    /* left column - content */
-    .panel{ background:transparent; padding:6px; }
-
-    /* cards (glitches) */
-    .card{
-      background:var(--card); border-radius:14px; padding:16px; margin-bottom:14px;
-      box-shadow:var(--glass-shadow); border:1px solid rgba(255,255,255,.03);
-      transition: transform .16s ease, box-shadow .16s ease;
-      cursor:pointer;
+    footer {
+      background: rgba(0,0,0,0.6);
+      padding: 15px;
+      text-align: center;
+      margin-top: 20px;
     }
-    .card:hover{ transform:translateY(-6px); box-shadow:0 18px 50px rgba(0,0,0,.6), 0 0 26px rgba(0,240,255,.06) }
-    .card h3{margin:0 0 8px; color:var(--neon2)}
-    .card p{margin:0; color:var(--muted)}
-    .card .steps{ margin-top:12px; background:#0b0b0b; padding:10px; border-radius:8px; display:none; color:var(--muted); border:1px solid rgba(255,255,255,.02) }
-
-    /* right column - mini-game area */
-    .game-box{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));
-      border-radius:12px; padding:14px; box-shadow:var(--glass-shadow); border:1px solid rgba(255,255,255,.03);
-    }
-    .game-header{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px }
-    .score, .high{ font-weight:800; color:var(--neon2) }
-    canvas{ display:block; margin:10px auto; background:#020202; border-radius:8px; border:2px solid rgba(0,240,255,.12) }
-
-    .controls{ display:flex; justify-content:center; gap:12px; margin-top:10px; flex-wrap:wrap; }
-    .ctrl-btn{
-      padding:10px 12px; border-radius:10px; background:linear-gradient(90deg,var(--neon1),var(--neon2));
-      color:#071017; font-weight:800; border:none; cursor:pointer; box-shadow:0 10px 30px rgba(0,240,255,.07);
-    }
-    .restart{ background:transparent; color:var(--neon1); border:1px dashed rgba(255,157,0,.35); padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700 }
-
-    .muted-note{ font-size:.95rem; color:var(--muted); margin-top:12px; text-align:center }
-
-    /* footer */
-    footer{ text-align:center; padding:18px; margin-top:30px; color:#bdbdbd; border-top:1px solid rgba(255,255,255,.03); background:transparent; }
-
-    @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <div class="nav">
-    <div class="nav-inner">
-      <div class="logo">GlitchPlayground <span>🚀</span></div>
-      <div class="links">
-        <a href="index.html">Home</a>
-        <a href="news.html">News</a>
-        <a href="game.html" class="active">Glitches</a>
-        <a href="contact.html">Contact</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand text-info" href="index.html">GlitchPlayground</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="game.html">Glitches</a></li>
+        <li class="nav-item"><a class="nav-link" href="news.html">GTA 6 News</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Glitch Tutorials -->
+<div class="container py-5">
+  <h2 class="text-center mb-4">🔥 GTA 5 Glitch Tutorials</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>💰 Unlimited Money Glitch</h5>
+        <p>Duplicate cash using casino chip trick. Works in GTA Online (use at your own risk).</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>🚗 Car Duplication Exploit</h5>
+        <p>Duplicate personal vehicles with arena workshop method. Sell cars for millions.</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>🛡️ God Mode Trick</h5>
+        <p>Enable god mode by glitching heist setup menu. Invincible until leaving session.</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>🎮 Solo Cayo Perico Replay</h5>
+        <p>Repeat the heist solo without cooldown by disconnecting at specific screen.</p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="wrap">
-    <!-- Tabs -->
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
-      <div class="tabs" role="tablist" aria-label="Sections">
-        <button id="tab-glitches" class="tab-btn active" role="tab" aria-selected="true">🧰 Glitches</button>
-        <button id="tab-game" class="tab-btn" role="tab" aria-selected="false">🎮 Mini-Game</button>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <a class="ctrl-btn" href="index.html">← Home</a>
-        <a class="ctrl-btn" href="news.html">News</a>
-      </div>
-    </div>
+<!-- Mini-Game -->
+<div class="container text-center py-5">
+  <h2>🎮 Dodge The Blocks Game</h2>
+  <p>Use ⬅️ and ➡️ arrow keys to survive!</p>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <p id="score">Score: 0</p>
+</div>
 
-    <div class="columns">
-      <!-- LEFT: Tab content -->
-      <div class="panel" id="panel-glitches" role="tabpanel">
-        <h2 style="margin-top:0;color:var(--neon1)">GTA 5 Glitches & Tutorials</h2>
-        <p style="color:var(--muted);margin-top:6px;margin-bottom:18px;">Click any card to show step-by-step instructions. Use at your own risk — online use can lead to bans.</p>
+<!-- Footer -->
+<footer>
+  <p>© 2025 GlitchPlayground | GTA 5 Glitches & Mini-Game</p>
+</footer>
 
-        <!-- Glitch Cards -->
-        <div class="card" onclick="toggleSteps(this)">
-          <h3>💰 Infinite Money — Cayo Perico Method</h3>
-          <p>Fast money by replaying heist loopholes carefully (single player safe variant listed).</p>
-          <div class="steps">
-            <ol>
-              <li>Start Cayo Perico with full prep. Complete stealth entry and loot.</li>
-              <li>After escape, return to story/close session then reload heist. Repeat safe method in singleplayer.</li>
-              <li>Do NOT spam in public online sessions — risk of detection.</li>
-            </ol>
-          </div>
-        </div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <div class="card" onclick="toggleSteps(this)">
-          <h3>🚗 Car Duplication (Safe approach)</h3>
-          <p>Duplicate with a friend in controlled session, then sell duplicates in separate sessions.</p>
-          <div class="steps">
-            <ol>
-              <li>Drive target car to garage with friend present.</li>
-              <li>Use garage swap sequence (park, exit to menu, let friend perform action) — follow exact in-game timing.</li>
-              <li>Once duplicate appears, transfer/sell from private session to reduce ban chance.</li>
-            </ol>
-          </div>
-        </div>
+<!-- Game Script -->
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  const player = { x: 180, y: 360, width: 40, height: 40, color: "cyan" };
+  let blocks = [];
+  let score = 0;
+  let gameOver = false;
+  let speed = 5;
 
-        <div class="card" onclick="toggleSteps(this)">
-          <h3>👻 God Mode Trick</h3>
-          <p>Short invincibility via mission/menu switching (temporary).</p>
-          <div class="steps">
-            <ol>
-              <li>Enter a mission cutscene or creator mode.</li>
-              <li>Quickly switch to online session and cancel the activity as allowed.</li>
-              <li>The player can remain invulnerable for a short window — not permanent.</li>
-            </ol>
-          </div>
-        </div>
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" && player.x > 0) player.x -= 20;
+    if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 20;
+  });
 
-        <div class="card" onclick="toggleSteps(this)">
-          <h3>🏝️ Cayo Perico Replay (Farm loop)</h3>
-          <p>Restart heist quickly by using solo-host disconnect/reconnect steps.</p>
-          <div class="steps">
-            <ol>
-              <li>Finish heist normally.</li>
-              <li>Disconnect/reconnect method to reset cooldown (singleplayer methods recommended).</li>
-              <li>Repeat responsibly — Rockstar may patch repeated exploits.</li>
-            </ol>
-          </div>
-        </div>
+  function spawnBlock() {
+    const x = Math.floor(Math.random() * (canvas.width - 40));
+    blocks.push({ x, y: 0, width: 40, height: 40, color: "red" });
+  }
 
-        <div class="card" onclick="toggleSteps(this)">
-          <h3>🧱 Wall Breach / Out-of-Bounds</h3>
-          <p>Use precise movement and props to clip through certain walls and access hidden areas.</p>
-          <div class="steps">
-            <ol>
-              <li>Find target wall/prop and align camera.</li>
-              <li>Use rapid crouch + lean actions or vehicle push to clip.</li>
-              <li>Practice in single-player first; some breaches can soft-lock your character.</li>
-            </ol>
-          </div>
-        </div>
+  function update() {
+    if (gameOver) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        <div style="margin-top:18px; padding:12px; border-radius:10px; background:rgba(255,0,0,0.06); border:1px solid rgba(255,0,0,0.12); color:#ffbbbb;">
-          <strong>⚠️ Warning:</strong> Use glitches responsibly. Repeated abuse in GTA Online can result in account action from Rockstar.
-        </div>
-      </div>
+    // Draw player
+    ctx.fillStyle = player.color;
+    ctx.fillRect(player.x, player.y, player.width, player.height);
 
-      <!-- RIGHT: Game panel (hidden/shown by tabs) -->
-      <div class="panel" id="panel-game" role="tabpanel" style="display:none;">
-        <div class="game-box">
-          <div class="game-header">
-            <div>
-              <div style="font-size:.95rem;color:var(--muted)">Mini-Game — Hard Mode</div>
-              <div style="font-size:1.1rem;font-weight:800;color:var(--neon2)">Dodge the Blocks</div>
-            </div>
-            <div style="text-align:right">
-              <div>Score: <span id="score" class="score">0</span></div>
-              <div style="font-size:.9rem;color:var(--muted)">High: <span id="highScore" class="high">0</span></div>
-            </div>
-          </div>
+    // Blocks
+    for (let i = 0; i < blocks.length; i++) {
+      const b = blocks[i];
+      b.y += speed;
+      ctx.fillStyle = b.color;
+      ctx.fillRect(b.x, b.y, b.width, b.height);
 
-          <canvas id="gameCanvas" width="420" height="420"></canvas>
-
-          <div class="controls">
-            <button id="leftBtn" class="ctrl-btn">◀ LEFT</button>
-            <button id="restartBtn" class="restart">🔁 Restart</button>
-            <button id="rightBtn" class="ctrl-btn">RIGHT ▶</button>
-          </div>
-
-          <div class="muted-note">Use arrow keys ← → or tap LEFT/RIGHT. Game gets harder over time.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>© 2025 GlitchPlayground • Made with ❤️</footer>
-
-  <script>
-    /********** Tab handling **********/
-    const tabGlitches = document.getElementById('tab-glitches');
-    const tabGame = document.getElementById('tab-game');
-    const panelGlitches = document.getElementById('panel-glitches');
-    const panelGame = document.getElementById('panel-game');
-
-    tabGlitches.addEventListener('click', ()=> {
-      tabGlitches.classList.add('active'); tabGame.classList.remove('active');
-      panelGlitches.style.display = ''; panelGame.style.display = 'none';
-    });
-    tabGame.addEventListener('click', ()=> {
-      tabGame.classList.add('active'); tabGlitches.classList.remove('active');
-      panelGame.style.display = ''; panelGlitches.style.display = 'none';
-      // ensure game loop is ready when opened
-      if (typeof startGame === 'function') startGame();
-    });
-
-    /********** Glitch card toggle **********/
-    function toggleSteps(cardEl){
-      const steps = cardEl.querySelector('.steps');
-      if(!steps) return;
-      if(steps.style.display === 'block') steps.style.display = 'none';
-      else steps.style.display = 'block';
-    }
-
-    /********** Mini-game logic (hard) **********/
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    const scoreEl = document.getElementById('score');
-    const highEl = document.getElementById('highScore');
-    const restartBtn = document.getElementById('restartBtn');
-    const leftBtn = document.getElementById('leftBtn');
-    const rightBtn = document.getElementById('rightBtn');
-
-    let player, blocks, score, speed, spawnInterval, spawnTimer, animationId, gameOver;
-    const STORAGE_KEY = 'gp_highscore_v1';
-
-    function loadHigh(){ return Number(localStorage.getItem(STORAGE_KEY) || 0); }
-    function saveHigh(v){ localStorage.setItem(STORAGE_KEY, String(v)); }
-
-    function resetState(){
-      player = { x: Math.floor((canvas.width - 40)/2), y: canvas.height - 60, w: 40, h: 40, color: '#00f0ff' };
-      blocks = [];
-      score = 0;
-      speed = 6;           // starting fall speed (hard)
-      spawnInterval = 600; // ms between spawns
-      gameOver = false;
-      scoreEl.innerText = score;
-      highEl.innerText = loadHigh();
-    }
-
-    function spawnBlock(){
-      const w = 26 + Math.floor(Math.random()*40); // variable block width
-      const x = Math.floor(Math.random() * (canvas.width - w));
-      const color = ['#ff3b30','#ff8c00','#ff2da5'][Math.floor(Math.random()*3)];
-      blocks.push({ x, y: -40, w, h: 28 + Math.floor(Math.random()*24), color });
-    }
-
-    // adjust spawn speed (decrease interval) safely
-    function setSpawnInterval(ms){
-      if(spawnTimer) clearInterval(spawnTimer);
-      spawnInterval = Math.max(120, ms);
-      spawnTimer = setInterval(spawnBlock, spawnInterval);
-    }
-
-    // keyboard control
-    let leftPressed=false, rightPressed=false;
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'ArrowLeft') leftPressed=true;
-      if(e.key === 'ArrowRight') rightPressed=true;
-    });
-    window.addEventListener('keyup', (e)=>{
-      if(e.key === 'ArrowLeft') leftPressed=false;
-      if(e.key === 'ArrowRight') rightPressed=false;
-    });
-
-    // mobile buttons: on mousedown hold, on mouseup release
-    leftBtn.addEventListener('mousedown', ()=> leftPressed=true);
-    leftBtn.addEventListener('mouseup', ()=> leftPressed=false);
-    leftBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); leftPressed=true }, {passive:false});
-    leftBtn.addEventListener('touchend', ()=> leftPressed=false);
-
-    rightBtn.addEventListener('mousedown', ()=> rightPressed=true);
-    rightBtn.addEventListener('mouseup', ()=> rightPressed=false);
-    rightBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); rightPressed=true }, {passive:false});
-    rightBtn.addEventListener('touchend', ()=> rightPressed=false);
-
-    // game loop
-    function loop(){
-      if(gameOver) return;
-      animationId = requestAnimationFrame(loop);
-      // move player slightly each frame if key held (small increments -> hard)
-      if(leftPressed) player.x = Math.max(0, player.x - 10);
-      if(rightPressed) player.x = Math.min(canvas.width - player.w, player.x + 10);
-
-      // clear
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-
-      // draw player (neon rect)
-      ctx.fillStyle = player.color;
-      roundRect(ctx, player.x, player.y, player.w, player.h, 6, true, false);
-
-      // move + draw blocks
-      for(let i = blocks.length - 1; i >= 0; i--){
-        const b = blocks[i];
-        b.y += speed;
-        // draw block
-        ctx.fillStyle = b.color;
-        roundRect(ctx, b.x, b.y, b.w, b.h, 6, true, false);
-
-        // collision check
-        if(rectsOverlap(player.x, player.y, player.w, player.h, b.x, b.y, b.w, b.h)){
-          endGame();
-          return;
-        }
-
-        // remove off-screen
-        if(b.y > canvas.height + 60) blocks.splice(i,1);
-      }
-
-      // update score and difficulty
-      score++;
-      scoreEl.innerText = score;
-
-      // every 180 points make things harder
-      if(score % 180 === 0){
-        speed += 0.6;               // speed up falling
-        setSpawnInterval(Math.max(140, spawnInterval - 40)); // spawn faster
-        // spawn a burst occasionally
-        for(let i=0;i<1;i++) spawnBlock();
-      }
-
-      // occasional chaos (more blocks)
-      if(score % 300 === 0){
-        spawnBlock(); spawnBlock();
+      if (player.x < b.x + b.width &&
+          player.x + player.width > b.x &&
+          player.y < b.y + b.height &&
+          player.y + player.height > b.y) {
+        gameOver = true;
+        document.getElementById("score").innerText = "💀 Game Over! Final Score: " + score;
       }
     }
 
-    function startGame(){
-      // init only if not already running
-      if(!panelGame || panelGame.style.display === 'none'){
-        // open the game tab UI if needed
-        tabGame.click();
-      }
-      cancelAnimationFrame(animationId);
-      if(spawnTimer) clearInterval(spawnTimer);
-      resetState();
-      setSpawnInterval(spawnInterval);
-      // make one immediate block to start pressure quickly
-      spawnBlock(); spawnBlock();
-      loop();
-    }
+    // Increase difficulty
+    score++;
+    if (score % 200 === 0) speed++;
+    if (score % 300 === 0) spawnBlock();
 
-    function endGame(){
-      gameOver = true;
-      cancelAnimationFrame(animationId);
-      if(spawnTimer) clearInterval(spawnTimer);
+    document.getElementById("score").innerText = "Score: " + score;
+    requestAnimationFrame(update);
+  }
 
-      const prevHigh = loadHigh();
-      if(score > prevHigh){
-        saveHigh(score);
-        highEl.innerText = score;
-      }
-
-      scoreEl.innerText = '💀 Game Over — ' + score;
-      // small visual flash of game over on canvas
-      ctx.fillStyle = 'rgba(255,20,20,0.08)';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-    }
-
-    function rectsOverlap(x1,y1,w1,h1,x2,y2,w2,h2){
-      return !(x1 + w1 < x2 || x1 > x2 + w2 || y1 + h1 < y2 || y1 > y2 + h2);
-    }
-
-    // rounded rect helper
-    function roundRect(ctx, x, y, w, h, r, fill, stroke){
-      if (typeof r === 'undefined') r = 5;
-      ctx.beginPath();
-      ctx.moveTo(x+r, y);
-      ctx.arcTo(x+w, y, x+w, y+h, r);
-      ctx.arcTo(x+w, y+h, x, y+h, r);
-      ctx.arcTo(x, y+h, x, y, r);
-      ctx.arcTo(x, y, x+w, y, r);
-      ctx.closePath();
-      if(fill){ ctx.fill(); }
-      if(stroke){ ctx.stroke(); }
-    }
-
-    // restart button
-    restartBtn.addEventListener('click', ()=>{
-      startGame();
-    });
-
-    // start paused until player clicks game tab or restart
-    // initialize high score UI
-    highEl.innerText = loadHigh();
-    // pre-warm but do not run loop until user clicks tab (startGame is called on tab open)
-    // However provide start on page load if user prefers:
-    // startGame();
-
-    // make canvas responsive: center and scale on small screens
-    function resizeCanvas(){
-      // we keep internal resolution fixed (420x420) but CSS can scale; keep as is
-    }
-    window.addEventListener('resize', resizeCanvas);
-
-    // Optional: if user opens the page and game panel is visible, start automatically
-    if(panelGame.style.display !== 'none'){
-      startGame();
-    }
-  </script>
+  setInterval(spawnBlock, 700);
+  update();
+</script>
 </body>
 </html>
