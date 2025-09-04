@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI Search — GlitchPlayground</title>
+
+<!-- Fuse.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+
+<style>
+  :root{
+    --bg1:#0f0f0f; --bg2:#1a0033; --accent:#00ffff; --hot:#ff0080;
+  }
+  body{
+    margin:0;
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:linear-gradient(-45deg,var(--bg1),var(--bg2),#001a33,#330033);
+    background-size:400% 400%; animation:grad 12s linear infinite;
+    color:#fff; min-height:100vh; display:flex; flex-direction:column;
+  }
+  @keyframes grad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(0,0,0,0.55);border-bottom:1px solid rgba(255,255,255,0.03)}
+  .logo{font-weight:800;color:var(--hot);text-shadow:0 0 8px #ff00ff}
+  nav a{color:#fff;margin-left:14px;text-decoration:none}
+  main{max-width:1100px;margin:20px auto;padding:16px;width:95%}
+  .panel{background:rgba(0,0,0,0.45);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+  .top-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .chat{height:320px;overflow:auto;padding:12px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);margin:12px 0}
+  .message.user{text-align:right;margin:8px 0}
+  .message.user .bubble{display:inline-block;background:var(--accent);color:#002; padding:10px 12px;border-radius:12px}
+  .message.bot .bubble{display:inline-block;background:rgba(255,255,255,0.03);color:#fff;padding:10px 12px;border-radius:12px}
+  .controls{display:flex;gap:8px;margin-top:8px}
+  input[type="search"]{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:#fff}
+  button{padding:10px 14px;border-radius:10px;border:none;background:var(--hot);color:#fff;font-weight:700;cursor:pointer}
+  button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+  .result{margin:10px 0;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02)}
+  .result h4{margin:0;color:var(--accent)}
+  .result p{margin:6px 0;color:#ddd}
+  .small-link{color:#ffd47a;text-decoration:none}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  textarea{width:100%;min-height:100px;background:rgba(255,255,255,0.02);color:#fff;border-radius:8px;padding:8px;border:1px solid rgba(255,255,255,0.04)}
+  .controls-bottom{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .meta{font-size:0.9rem;color:#cfd8e3;margin-top:8px}
+  @media(max-width:600px){.chat{height:220px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">GlitchPlayground AI</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="game.html">Game</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <h2 style="margin:0">Ask the site — search news, glitches, guides</h2>
+      <div style="font-size:0.9rem;color:#cfd8e3">Local, private, lifetime-free</div>
+    </div>
+
+    <div class="top-row" style="margin-top:12px">
+      <select id="filterType">
+        <option value="">All types</option>
+        <option value="news">News</option>
+        <option value="glitch">Glitch</option>
+        <option value="guide">Guide</option>
+        <option value="general">General</option>
+      </select>
+
+      <input id="q" type="search" placeholder='Ask e.g. "car dupes steps" or "GTA 6 release"'>
+
+      <button id="askBtn">Ask</button>
+      <button id="showAll" class="ghost">Show top</button>
+    </div>
+
+    <div class="chat" id="chat" aria-live="polite"></div>
+
+    <div class="controls">
+      <button id="clearChat" class="ghost">Clear Chat</button>
+      <button id="toggleEditor" class="ghost">Add / Import Data</button>
+      <div style="margin-left:auto" class="meta">Results are instant — update the index to teach the assistant new content.</div>
+    </div>
+  </div>
+
+  <div style="height:16px"></div>
+
+  <div class="panel" id="resultsPanel">
+    <h3 style="margin-top:0">Top matching articles (quick links)</h3>
+    <div id="topResults"></div>
+    <hr style="border:none;border-top:1px dashed rgba(255,255,255,0.06);margin:12px 0"/>
+    <div id="allResults"></div>
+  </div>
+
+  <!-- Editor / Import Panel (hidden by default) -->
+  <div class="panel" id="editorPanel" style="margin-top:12px;display:none">
+    <h3 style="margin-top:0">Add / Import content</h3>
+    <div class="meta">You can add many items (title, type, content, url). Use JSON export/import for bulk edits.</div>
+
+    <textarea id="bulkData" placeholder='Paste JSON array of items here. Example:
+[
+  {"id":"gl1","title":"Unlimited Money Glitch","type":"glitch","content":"Buy chips..., disconnect on loss...", "url":"game.html#money"},
+  {"id":"news1","title":"GTA 6 Trailer","type":"news","content":"Trailer shows Vice City...", "url":"news.html#trailer"}
+]'></textarea>
+
+    <div class="controls-bottom">
+      <button id="importBtn">Import JSON (merge)</button>
+      <button id="replaceBtn">Replace index (overwrite)</button>
+      <button id="exportBtn" class="ghost">Export JSON</button>
+      <input id="fileInput" type="file" accept=".json" style="display:none" />
+      <button id="loadFileBtn" class="ghost">Load JSON file</button>
+      <button id="clearIndex" class="ghost">Clear index</button>
+    </div>
+    <div class="meta" style="margin-top:8px">Fields per item: <code>id, title, type, content, url</code>. Type helps filter results (news/glitch/guide/general).</div>
+  </div>
+</main>
+
+<script>
+/* ======== Storage & Default Posts ======== */
+/* Load saved posts from localStorage or use built-in samples */
+const STORAGE_KEY = 'gp_posts_v1';
+let posts = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+
+if(!posts){
+  posts = [
+    {id:"news_trailer", title:"GTA 6 Trailer Breakdown", type:"news", content:"Trailer shows Vice City, new characters, and updated weather systems.", url:"news.html#trailer"},
+    {id:"news_release", title:"GTA 6 Release Window Rumor", type:"news", content:"Insiders hint at a late 2025 release window; official confirmation pending.", url:"news.html#release"},
+    {id:"gl_money", title:"Unlimited Money Glitch", type:"glitch", content:"Buy chips at Diamond Casino, bet max, disconnect on loss, reconnect to keep chips.", url:"game.html#money"},
+    {id:"gl_cardup", title:"Car Duplication Glitch", type:"glitch", content:"Use Arena Workshop / Elegy swap timing to duplicate a custom car.", url:"game.html#cardup"},
+    {id:"gl_god", title:"God Mode Glitch", type:"glitch", content:"Start a quick job and disconnect at loading to spawn back with temporary invulnerability.", url:"game.html#godmode"},
+    {id:"guide_controls", title:"Game: Controls & Tips", type:"guide", content:"Use left/right arrow keys to play the mini-game. Mobile: tap edges.", url:"game.html#controls"},
+    {id:"general_games", title:"How to find game guides", type:"general", content:"Search by game name and topic e.g. 'GTA 5 money' or 'Minecraft redstone' to find guides.", url:""}
+  ];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+}
+
+/* ======== Fuse.js setup ======== */
+let fuse;
+function buildIndex(){
+  const options = {
+    keys: ['title','content','type'],
+    includeScore: true,
+    threshold: 0.35,
+    ignoreLocation: true,
+    useExtendedSearch: true
+  };
+  fuse = new Fuse(posts, options);
+}
+buildIndex();
+
+/* ======== UI Elements ======== */
+const chat = document.getElementById('chat');
+const qInput = document.getElementById('q');
+const askBtn = document.getElementById('askBtn');
+const topResults = document.getElementById('topResults');
+const allResults = document.getElementById('allResults');
+const showAllBtn = document.getElementById('showAll');
+const filterType = document.getElementById('filterType');
+
+const editorPanel = document.getElementById('editorPanel');
+const toggleEditor = document.getElementById('toggleEditor');
+const bulkData = document.getElementById('bulkData');
+const importBtn = document.getElementById('importBtn');
+const replaceBtn = document.getElementById('replaceBtn');
+const exportBtn = document.getElementById('exportBtn');
+const clearIndexBtn = document.getElementById('clearIndex');
+const loadFileBtn = document.getElementById('loadFileBtn');
+const fileInput = document.getElementById('fileInput');
+
+function appendUser(text){ const d=document.createElement('div'); d.className='message user'; d.innerHTML=`<div class="bubble">${escapeHtml(text)}</div>`; chat.appendChild(d); chat.scrollTop = chat.scrollHeight; }
+function appendBot(html){ const d=document.createElement('div'); d.className='message bot'; d.innerHTML=`<div class="bubble">${html}</div>`; chat.appendChild(d); chat.scrollTop = chat.scrollHeight; }
+function escapeHtml(s){ return (s+'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ======== Render results helpers ======== */
+function mkResultItem(p){
+  const el = document.createElement('div'); el.className='result';
+  el.innerHTML = `<h4>${escapeHtml(p.title)}</h4>
+    <p>${escapeHtml(p.content.substring(0,320))}${p.content.length>320?'...':''}</p>
+    <a class="small-link" href="${p.url||'#'}" ${p.url?'target="_blank"':''}>Open →</a>
+    <div style="font-size:0.85rem;color:#9fb7c8;margin-top:6px">type: ${escapeHtml(p.type||'general')}</div>`;
+  return el;
+}
+
+/* show top matches (when page loads or ask with empty) */
+function showTop(){
+  topResults.innerHTML=''; allResults.innerHTML='';
+  // show latest 3 posts (or best matches to empty search)
+  const matches = fuse.search('').slice(0,6);
+  if(matches.length===0){
+    topResults.innerHTML = '<div style="color:#cfd8e3">No articles in index yet. Add items to the index.</div>';
+    return;
+  }
+  matches.slice(0,3).forEach(m => topResults.appendChild(mkResultItem(m.item)));
+  matches.slice(3,10).forEach(m => allResults.appendChild(mkResultItem(m.item)));
+}
+showTop();
+
+/* ======== Searching logic ======== */
+function searchAndRespond(query){
+  // UI
+  appendUser(query);
+
+  // apply filter
+  const typeFilter = filterType.value || null;
+  let results = fuse.search(query, {limit: 12});
+  if(typeFilter){
+    results = results.filter(r => (r.item.type||'').toLowerCase() === typeFilter.toLowerCase());
+  }
+
+  if(results.length === 0){
+    appendBot('No matching articles found on the site. Try different keywords or broaden the filter.');
+    return;
+  }
+
+  // Compose reply from top 2 matches
+  const top = results.slice(0,2).map(r => r.item);
+  let replyHtml = '';
+  top.forEach((p,i) => {
+    replyHtml += `<strong>${escapeHtml(p.title)}</strong><br/>${escapeHtml(p.content)}<br/><a class="small-link" href="${p.url||'#'}" ${p.url?'target="_blank"':''}>Open →</a>`;
+    if(i<top.length-1) replyHtml += '<hr style="border:none;border-top:1px dashed rgba(255,255,255,0.06);margin:8px 0"/>';
+  });
+
+  appendBot(replyHtml);
+
+  // update lists
+  topResults.innerHTML=''; allResults.innerHTML='';
+  results.slice(0,6).forEach(r => topResults.appendChild(mkResultItem(r.item)));
+  results.slice(6,20).forEach(r => allResults.appendChild(mkResultItem(r.item)));
+}
+
+/* UI events */
+askBtn.addEventListener('click', ()=>{ const q=qInput.value.trim(); if(!q) return; searchAndRespond(q); qInput.value=''; });
+qInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ askBtn.click(); }});
+showAllBtn.addEventListener('click', ()=>{ qInput.value=''; showTop(); });
+
+document.getElementById('clearChat').addEventListener('click', ()=>{ chat.innerHTML=''; });
+toggleEditor.addEventListener('click', ()=>{ editorPanel.style.display = editorPanel.style.display==='none'?'block':'none'; });
+
+/* ======== Index editing ======== */
+function saveIndex(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+  buildIndex();
+  showTop();
+}
+importBtn.addEventListener('click', ()=>{
+  try{
+    const arr = JSON.parse(bulkData.value);
+    if(!Array.isArray(arr)){ alert('JSON must be an array of items'); return; }
+    // merge by id (replace if id exists)
+    const map = Object.fromEntries(posts.map(p=>[p.id,p]));
+    arr.forEach(item=>{
+      if(!item.id) item.id = 'id_'+Math.random().toString(36).slice(2,9);
+      map[item.id] = item;
+    });
+    posts = Object.values(map);
+    saveIndex();
+    alert('Imported ' + arr.length + ' items (merged).');
+  }catch(err){ alert('Invalid JSON: ' + err.message); }
+});
+
+replaceBtn.addEventListener('click', ()=>{
+  try{
+    const arr = JSON.parse(bulkData.value);
+    if(!Array.isArray(arr)){ alert('JSON must be an array'); return; }
+    posts = arr.map((it)=>({ id: it.id || ('id_'+Math.random().toString(36).slice(2,9)), title:it.title||'', type:it.type||'general', content:it.content||'', url:it.url||'' }));
+    saveIndex();
+    alert('Index replaced with ' + posts.length + ' items.');
+  }catch(err){ alert('Invalid JSON: ' + err.message); }
+});
+
+exportBtn.addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(posts, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'gp_posts_export.json'; document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+});
+
+clearIndexBtn.addEventListener('click', ()=>{
+  if(!confirm('Clear entire index? This removes all items stored in your browser.')) return;
+  posts = []; saveIndex(); alert('Index cleared.');
+});
+
+/* Load JSON file */
+loadFileBtn.addEventListener('click', ()=> fileInput.click());
+fileInput.addEventListener('change', (e)=>{
+  const f = e.target.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const arr = JSON.parse(reader.result);
+      if(!Array.isArray(arr)){ alert('JSON must be an array'); return; }
+      // merge
+      const map = Object.fromEntries(posts.map(p=>[p.id,p]));
+      arr.forEach(item=>{
+        if(!item.id) item.id = 'id_'+Math.random().toString(36).slice(2,9);
+        map[item.id] = item;
+      });
+      posts = Object.values(map); saveIndex();
+      alert('Loaded ' + arr.length + ' items from file.');
+    }catch(err){ alert('Invalid JSON file: ' + err.message); }
+  }
+  reader.readAsText(f);
+});
+
+/* ======== Finish init ======== */
+buildIndex();
+showTop();
+</script>
+</body>
+</html>
