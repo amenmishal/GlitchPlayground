@@ -1,96 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlitchPlayground - GTA Hub</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlitchPlayground 🚀</title>
   <style>
+    /* Background */
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: #fff;
+      margin: 0;
       font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #0f0f0f, #1a0033, #003366, #330033);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
     }
-    .hero {
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: cyan;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    /* Hero */
+    header {
       text-align: center;
-      padding: 100px 20px;
+      padding: 60px 20px;
+    }
+    header h1 {
+      font-size: 2.5em;
+      text-shadow: 0 0 15px orange;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #ddd;
+    }
+
+    /* Cards */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
     .card {
-      background: rgba(0,0,0,0.85);
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      transition: 0.3s;
     }
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 25px rgba(0,255,255,0.8);
+      transform: scale(1.05);
+      box-shadow: 0 0 25px cyan;
     }
+    .card h3 {
+      margin-top: 0;
+      color: cyan;
+    }
+
+    /* Footer */
     footer {
-      background: rgba(0,0,0,0.6);
-      padding: 15px;
       text-align: center;
-      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 30px;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; }
+      nav a { margin: 10px 0; }
     }
   </style>
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand text-info" href="index.html">GlitchPlayground</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="game.html">Glitches</a></li>
-        <li class="nav-item"><a class="nav-link" href="news.html">GTA 6 News</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">🎮 GlitchPlayground</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="game.html">Glitches & Game</a>
+      <a href="contact.html">Contact</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <h1 class="display-4">🚨 GTA 5 Glitch Hub</h1>
-  <p class="lead">Unlimited money, car dupes, god mode & more!</p>
-</section>
+  <!-- Hero Section -->
+  <header>
+    <h1>🚀 Welcome to GlitchPlayground</h1>
+    <p>Your hub for GTA 5 glitches & GTA 6 leaks</p>
+  </header>
 
-<!-- Glitch Cards -->
-<div class="container py-5">
-  <div class="row g-4">
-    <div class="col-md-6 col-lg-4">
-      <div class="card p-3">
-        <h5>💰 Unlimited Money Glitch</h5>
-        <p>Step-by-step guide on how to duplicate cash without bans.</p>
+  <!-- Latest Cards -->
+  <section>
+    <h2 style="text-align:center; text-shadow:0 0 10px cyan;">🔥 Latest Highlights</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>💰 Unlimited Money Trick</h3>
+        <p>Replay heists & stack millions — safe methods explained step by step.</p>
+      </div>
+      <div class="card">
+        <h3>🚀 GTA 6 Leak</h3>
+        <p>Insiders confirm Vice City is back with neon vibes & jet skis!</p>
+      </div>
+      <div class="card">
+        <h3>👻 Ghost Car Glitch</h3>
+        <p>Make your vehicle invisible online — troll lobbies with style.</p>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="card p-3">
-        <h5>🚗 Car Duplication Glitch</h5>
-        <p>Duplicate cars fast and sell them for millions in GTA Online.</p>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="card p-3">
-        <h5>🛡️ God Mode Trick</h5>
-        <p>Become invincible in both GTA Online & Story Mode.</p>
-      </div>
-    </div>
-  </div>
-</div>
+  </section>
 
-<!-- Footer -->
-<footer>
-  <p>© 2025 GlitchPlayground | GTA 5 Glitches & GTA 6 News</p>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 GlitchPlayground 🚀 – GTA 5 & GTA 6 Hub</p>
+  </footer>
 </body>
 </html>
