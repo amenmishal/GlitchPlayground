@@ -3,29 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Game | GlitchPlayground 🚀</title>
+  <title>Game & GTA 5 Glitches - GlitchPlayground 🚀</title>
   <style>
-    /* Background */
+    /* Neon Gradient Background */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(-45deg, #0f0f0f, #1a0033, #001a33, #330033);
+      background: linear-gradient(-45deg, #0d0d0d, #1a0033, #000033, #33001a);
       background-size: 400% 400%;
-      animation: gradient 12s ease infinite;
+      animation: gradient 15s ease infinite;
       color: white;
-      text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
     @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
     /* Navbar */
-    .site-header {
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -37,74 +33,126 @@
       z-index: 1000;
     }
     .logo {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       text-decoration: none;
       color: #ff0080;
-      text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080, 0 0 40px #ff00ff;
+      text-shadow: 0 0 10px #ff0080, 0 0 20px #ff00ff;
       animation: glow 2s infinite alternate;
     }
     @keyframes glow {
-      from { text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080; }
-      to   { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
+      from { text-shadow: 0 0 10px #ff0080, 0 0 20px #ff00ff; }
+      to { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
     }
     nav a {
       color: white;
       text-decoration: none;
       margin-left: 20px;
-      transition: color 0.3s;
     }
     nav a:hover {
       color: #00ffff;
       text-shadow: 0 0 10px #00ffff;
     }
 
-    /* Game Area */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+    /* Game Section */
+    .game-container {
+      text-align: center;
+      margin: 40px auto;
     }
     canvas {
       background: black;
-      border: 2px solid cyan;
-      box-shadow: 0 0 20px cyan;
       display: block;
       margin: 0 auto;
+      border: 2px solid cyan;
+      box-shadow: 0 0 20px cyan;
     }
     #score {
       font-size: 20px;
       margin: 15px;
-      text-shadow: 0 0 10px cyan;
+    }
+    #bestScore {
+      font-size: 18px;
+      color: #00ffcc;
     }
     #restartBtn {
       display: none;
-      margin-top: 20px;
       padding: 10px 20px;
-      font-size: 18px;
       background: #ff0080;
-      color: white;
       border: none;
-      border-radius: 8px;
+      color: white;
+      font-size: 18px;
       cursor: pointer;
-      box-shadow: 0 0 10px #ff0080;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    #restartBtn:hover {
+      background: #00ffff;
+      color: black;
+    }
+
+    /* Warning Banner */
+    .warning {
+      margin: 40px auto;
+      padding: 15px;
+      max-width: 900px;
+      background: rgba(255,0,0,0.1);
+      border: 2px solid red;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 18px;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px red;
+    }
+
+    /* Glitch Cards */
+    .glitches {
+      max-width: 1100px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .card {
+      background: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff;
+    }
+    .icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+    }
+    .card h3 {
+      color: #ff00ff;
+      margin-top: 0;
+    }
+    .card ol {
+      margin: 10px 0 0 20px;
+      padding: 0;
+      text-align: left;
     }
 
     /* Footer */
     footer {
+      text-align: center;
+      padding: 20px;
       background: rgba(0,0,0,0.6);
-      padding: 10px;
-      font-size: 14px;
+      margin-top: 40px;
       border-top: 2px solid rgba(255,255,255,0.2);
     }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <header class="site-header">
+  <header>
     <a href="index.html" class="logo">GlitchPlayground 🚀</a>
     <nav>
       <a href="index.html">Home</a>
@@ -114,17 +162,80 @@
     </nav>
   </header>
 
-  <!-- Main Game -->
-  <main>
-    <h1>🚀 Dodge the Blocks Challenge</h1>
-    <p id="score">🎮 Score: 0</p>
+  <!-- Game -->
+  <div class="game-container">
+    <h2>🔥 Survive the Falling Blocks Game 🔥</h2>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
-    <button id="restartBtn">🔄 Restart</button>
-  </main>
+    <p id="score">Score: 0</p>
+    <p id="bestScore">Best Score: 0</p>
+    <button id="restartBtn">Restart Game</button>
+  </div>
+
+  <!-- Warning -->
+  <div class="warning">
+    ⚠️ WARNING: These GTA 5 glitches are risky! Rockstar may ban your account if you exploit them.  
+    We take no responsibility if your account is suspended.
+  </div>
+
+  <!-- GTA 5 Glitches -->
+  <section class="glitches">
+    <div class="card">
+      <div class="icon">💰</div>
+      <h3>Unlimited Money Glitch</h3>
+      <ol>
+        <li>Go to Diamond Casino and buy as many chips as possible.</li>
+        <li>Bet maximum on Roulette or Slots.</li>
+        <li>If you win → quickly save and keep chips.</li>
+        <li>If you lose → disconnect internet before save.</li>
+        <li>Reconnect, chips stay → repeat for profit.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="icon">🚗</div>
+      <h3>Car Duplication Glitch</h3>
+      <ol>
+        <li>Get an Arena Workshop or MOC.</li>
+        <li>Buy a free Elegy RH8 & park it.</li>
+        <li>Use the custom car you want to duplicate.</li>
+        <li>Swap vehicle at the right timing.</li>
+        <li>Elegy turns into your custom car.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>God Mode Glitch</h3>
+      <ol>
+        <li>Open your phone & start Quick Job.</li>
+        <li>At loading moment → disconnect internet.</li>
+        <li>Spawn back in free roam with god mode.</li>
+        <li>Take damage → you won’t die.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="icon">🏝️</div>
+      <h3>Cayo Perico Replay Glitch</h3>
+      <ol>
+        <li>Complete the heist finale.</li>
+        <li>Before cutscene ends → force close game.</li>
+        <li>Reload → finale still available.</li>
+        <li>Repeat heist without setups.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="icon">🕳️</div>
+      <h3>Wall Breach Spot</h3>
+      <ol>
+        <li>Go to Los Santos Customs (Burton).</li>
+        <li>Ride a bike into the corner wall fast.</li>
+        <li>You’ll phase inside the wall.</li>
+        <li>Shoot outside while enemies can’t hit you.</li>
+      </ol>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 GlitchPlayground 🚀 | GTA Glitches & News Hub</p>
+    © 2025 GlitchPlayground 🚀 | All GTA 5 glitches are for educational purposes only.
   </footer>
 
   <!-- Game Script -->
@@ -134,54 +245,15 @@
     const player = { x: 180, y: 360, width: 40, height: 40, color: "cyan" };
     let blocks = [];
     let score = 0;
-    let bestScore = localStorage.getItem("bestScore") || 0;
+    let bestScore = 0;
     let gameOver = false;
     let speed = 5;
-    let gameLoop;
 
-    const scoreBoard = document.getElementById("score");
-    const restartBtn = document.getElementById("restartBtn");
-
-    // Show best score under scoreboard
-    const bestBoard = document.createElement("div");
-    bestBoard.style.marginTop = "5px";
-    bestBoard.innerText = "🏆 Best Score: " + bestScore;
-    scoreBoard.insertAdjacentElement("afterend", bestBoard);
-
-    // Controls (PC)
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft" && player.x > 0) player.x -= 15;
       if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 15;
     });
 
-    // Mobile Controls
-    const leftBtn = document.createElement("button");
-    const rightBtn = document.createElement("button");
-    leftBtn.innerText = "⬅️";
-    rightBtn.innerText = "➡️";
-    leftBtn.style.cssText = rightBtn.style.cssText = `
-      position: fixed; bottom: 20px; width: 60px; height: 60px;
-      background: rgba(0,0,0,0.6); color: white; font-size: 24px;
-      border: 2px solid cyan; border-radius: 50%; z-index: 999;
-    `;
-    leftBtn.style.left = "20px";
-    rightBtn.style.right = "20px";
-    document.body.appendChild(leftBtn);
-    document.body.appendChild(rightBtn);
-
-    leftBtn.addEventListener("click", () => {
-      if (player.x > 0) player.x -= 15;
-    });
-    rightBtn.addEventListener("click", () => {
-      if (player.x < canvas.width - player.width) player.x += 15;
-    });
-
-    // Restart button
-    restartBtn.addEventListener("click", () => {
-      resetGame();
-    });
-
-    // Spawn blocks
     function spawnBlock() {
       const x = Math.floor(Math.random() * (canvas.width - 40));
       blocks.push({ x, y: 0, width: 40, height: 40, color: "red" });
@@ -191,64 +263,55 @@
       if (gameOver) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Player
       ctx.fillStyle = player.color;
       ctx.fillRect(player.x, player.y, player.width, player.height);
 
-      // Blocks
       for (let i = 0; i < blocks.length; i++) {
         const b = blocks[i];
         b.y += speed;
         ctx.fillStyle = b.color;
         ctx.fillRect(b.x, b.y, b.width, b.height);
 
-        // Collision
         if (
           player.x < b.x + b.width &&
           player.x + player.width > b.x &&
           player.y < b.y + b.height &&
           player.y + player.height > b.y
         ) {
-          endGame();
+          gameOver = true;
+          document.getElementById("score").innerText = "💀 Game Over! Final Score: " + score;
+          if (score > bestScore) {
+            bestScore = score;
+            document.getElementById("bestScore").innerText = "Best Score: " + bestScore;
+          }
+          document.getElementById("restartBtn").style.display = "inline-block";
         }
       }
 
-      // Difficulty
       score++;
       if (score % 200 === 0) speed += 1;
       if (score % 300 === 0) spawnBlock();
 
-      scoreBoard.innerText = "🎮 Score: " + score;
+      document.getElementById("score").innerText = "Score: " + score;
+
       requestAnimationFrame(update);
     }
 
-    function endGame() {
-      gameOver = true;
-      clearInterval(gameLoop);
-      scoreBoard.innerText = "💀 Game Over! Final Score: " + score;
-
-      if (score > bestScore) {
-        bestScore = score;
-        localStorage.setItem("bestScore", bestScore);
-        bestBoard.innerText = "🏆 Best Score: " + bestScore;
-      }
-
-      restartBtn.style.display = "inline-block";
-    }
-
-    function resetGame() {
+    function restartGame() {
       blocks = [];
       score = 0;
       speed = 5;
       gameOver = false;
-      restartBtn.style.display = "none";
-      scoreBoard.innerText = "🎮 Score: 0";
-      gameLoop = setInterval(spawnBlock, 700);
+      player.x = 180;
+      player.y = 360;
+      document.getElementById("score").innerText = "Score: 0";
+      document.getElementById("restartBtn").style.display = "none";
       update();
     }
 
-    // Start
-    gameLoop = setInterval(spawnBlock, 700);
+    document.getElementById("restartBtn").addEventListener("click", restartGame);
+
+    setInterval(spawnBlock, 700);
     update();
   </script>
 </body>
