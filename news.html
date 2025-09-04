@@ -1,161 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GTA 6 News & Leaks</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* 🌌 Background Animation */
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: linear-gradient(-45deg, #1a1a1a, #2a003f, #001f3f, #0a0a0a);
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #1e0033, #001f33);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
+      color: #fff;
+      font-family: Arial, sans-serif;
     }
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
-
-    /* 🏷️ Header */
-    header {
-      background: rgba(0,0,0,0.7);
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      color: #ff9900;
-      text-shadow: 0 0 10px #ff9900;
+    .card {
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
-    /* 🧭 Navbar */
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background: rgba(0,0,0,0.6);
-      padding: 12px;
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(0,255,255,0.8);
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #00ffff;
-      text-shadow: 0 0 8px #00ffff;
-      text-decoration: underline;
-    }
-
-    /* 📦 Container */
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    /* 📰 News Cards */
-    .news-card {
-      background: rgba(0,0,0,0.65);
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.25);
-      transition: 0.6s ease-in-out;
-      backdrop-filter: blur(4px);
-
-      /* Animation default (hidden) */
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    .news-card.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .news-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 25px rgba(0,255,255,0.7);
-    }
-    .news-card h2 {
-      color: #ff9900;
-      margin-bottom: 10px;
-      text-shadow: 0 0 8px rgba(255,153,0,0.6);
-    }
-    .news-card p {
-      color: #ddd;
-      line-height: 1.6;
-    }
-
-    /* 📌 Footer */
     footer {
-      text-align: center;
+      background: rgba(0,0,0,0.6);
       padding: 15px;
-      background: rgba(0,0,0,0.7);
+      text-align: center;
       margin-top: 30px;
-      font-size: 14px;
-      color: #bbb;
     }
   </style>
 </head>
 <body>
-  <!-- 🚀 Header -->
-  <header>
-    🚀 GTA 6 News & Leaks
-  </header>
 
-  <!-- 🧭 Navbar -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="news.html">News</a>
-    <a href="game.html">Glitches & Game</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <!-- 📰 News Content -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <div class="news-card">
-      <h2>🔥 GTA 6 Trailer 2 Breakdown</h2>
-      <p>Rockstar dropped the second official trailer, showing Vice City in ultra-realistic detail! Players spotted new weapons, car customization, and even alligators roaming the swamps.</p>
-    </div>
-
-    <div class="news-card">
-      <h2>🚀 Release Date Leak</h2>
-      <p>A trusted insider claims GTA 6 will launch in <b>Fall 2025</b>. Rockstar has yet to confirm, but the rumor aligns with their financial projections.</p>
-    </div>
-
-    <div class="news-card">
-      <h2>💰 New Money System</h2>
-      <p>Leaks reveal a dynamic economy — prices for cars, weapons, and properties may rise or fall depending on in-game events. Players can even invest in Vice City’s stock market.</p>
-    </div>
-
-    <div class="news-card">
-      <h2>👻 Mysterious Ghost Easter Egg</h2>
-      <p>Dataminers found references to a spooky hidden mission in the game files. Could GTA 6 bring back paranormal side quests like San Andreas’ myths?</p>
+    <a class="navbar-brand text-info" href="index.html">GlitchPlayground</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="game.html">Glitches</a></li>
+        <li class="nav-item"><a class="nav-link active" href="news.html">GTA 6 News</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
     </div>
   </div>
+</nav>
 
-  <!-- 📌 Footer -->
-  <footer>
-    © 2025 GlitchPlayground 🚀 | All GTA 6 leaks & news are community-sourced.
-  </footer>
+<!-- News Section -->
+<div class="container py-5">
+  <h2 class="text-center mb-4">🚀 GTA 6 News & Leaks</h2>
+  <div class="row g-4">
 
-  <!-- ✨ Scroll Animation Script -->
-  <script>
-    const cards = document.querySelectorAll('.news-card');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.2 });
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>🌴 Vice City Confirmed</h5>
+        <p>Rockstar officially confirmed Vice City as GTA 6’s main map. Expect a modern reimagining with neon vibes.</p>
+      </div>
+    </div>
 
-    cards.forEach(card => observer.observe(card));
-  </script>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>🧑‍🤝‍🧑 First Dual Protagonists</h5>
+        <p>Leaks show Jason & Lucia as the first dual playable characters, inspired by Bonnie & Clyde.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>📅 Release Window</h5>
+        <p>Take-Two hinted GTA 6 will launch in 2025. Pre-orders expected later this year.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>💰 Bigger Economy</h5>
+        <p>GTA 6 introduces stock markets, real estate expansions, and more hustling opportunities.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>🎮 Next-Gen Exclusive</h5>
+        <p>Confirmed for PS5, Xbox Series X/S, and PC. No PS4 or Xbox One support.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 GlitchPlayground | GTA 6 News & Leaks</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
