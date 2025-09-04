@@ -1,156 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glitches & Game</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game | GlitchPlayground 🚀</title>
   <style>
     /* Background */
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: white;
-      background: linear-gradient(-45deg, #0f0f0f, #1a1a40, #2b0033, #0d1b2a);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #0f0f0f, #1a0033, #001a33, #330033);
       background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
+      animation: gradient 12s ease infinite;
+      color: white;
+      text-align: center;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    @keyframes gradientBG {
+    @keyframes gradient {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
     /* Navbar */
-    nav {
-      background: rgba(0,0,0,0.7);
-      padding: 15px;
-      text-align: center;
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.6);
+      border-bottom: 2px solid rgba(255,255,255,0.2);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #ff0080;
+      text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080, 0 0 40px #ff00ff;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080; }
+      to   { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
+    }
     nav a {
       color: white;
-      margin: 0 15px;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      margin-left: 20px;
+      transition: color 0.3s;
     }
     nav a:hover {
-      color: #ff00ff;
-      text-shadow: 0 0 8px #ff00ff;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
     }
 
-    /* Glitch Tutorials */
-    .glitch-section {
-      padding: 30px;
-    }
-    .glitch {
-      background: rgba(255,255,255,0.05);
-      margin: 15px 0;
+    /* Game Area */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-    .glitch:hover {
-      box-shadow: 0 0 15px #00ffff;
-    }
-    .glitch h2 {
-      color: #ff9900;
-      text-shadow: 0 0 6px #ff9900;
-    }
-    .glitch p {
-      color: #ccc;
-    }
-
-    /* Game */
-    .game-container {
-      text-align: center;
-      padding: 30px;
     }
     canvas {
-      border: 2px solid #fff;
-      background: rgba(0,0,0,0.7);
-      border-radius: 10px;
+      background: black;
+      border: 2px solid cyan;
+      box-shadow: 0 0 20px cyan;
       display: block;
       margin: 0 auto;
     }
     #score {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #00ffff;
+      font-size: 20px;
+      margin: 15px;
+      text-shadow: 0 0 10px cyan;
+    }
+    #restartBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #ff0080;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff0080;
     }
 
     /* Footer */
     footer {
-      background: rgba(0,0,0,0.8);
-      text-align: center;
-      padding: 15px;
-      margin-top: auto;
-    }
-
-    /* Mobile */
-    @media(max-width: 600px) {
-      nav a { display: block; margin: 10px 0; }
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      font-size: 14px;
+      border-top: 2px solid rgba(255,255,255,0.2);
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="news.html">News</a>
-    <a href="game.html">Glitches & Game</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <!-- Navbar -->
+  <header class="site-header">
+    <a href="index.html" class="logo">GlitchPlayground 🚀</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="game.html">Game</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-  <!-- Glitch Tutorials -->
-  <div class="glitch-section">
-    <h1>🔥 GTA 5 Glitches</h1>
-
-    <div class="glitch">
-      <h2>💰 Unlimited Money Glitch</h2>
-      <p>Replay Cayo Perico heist using disconnect trick — works without ban if done safely.</p>
-    </div>
-
-    <div class="glitch">
-      <h2>🚗 Car Duplication Glitch</h2>
-      <p>Use Mobile Operations Center + Arena Workshop method to duplicate and sell vehicles.</p>
-    </div>
-
-    <div class="glitch">
-      <h2>👻 God Mode Glitch</h2>
-      <p>Activate by entering Titan of a Job mission and exiting at precise timing.</p>
-    </div>
-  </div>
-
-  <!-- Hard Mini Game -->
-  <div class="game-container">
-    <h1>🎮 Dodge the Blocks</h1>
+  <!-- Main Game -->
+  <main>
+    <h1>🚀 Dodge the Blocks Challenge</h1>
+    <p id="score">🎮 Score: 0</p>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
-    <p id="score">Score: 0</p>
-  </div>
+    <button id="restartBtn">🔄 Restart</button>
+  </main>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 GlitchPlayground 🚀</p>
+    <p>© 2025 GlitchPlayground 🚀 | GTA Glitches & News Hub</p>
   </footer>
 
+  <!-- Game Script -->
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
     const player = { x: 180, y: 360, width: 40, height: 40, color: "cyan" };
     let blocks = [];
     let score = 0;
+    let bestScore = localStorage.getItem("bestScore") || 0;
     let gameOver = false;
     let speed = 5;
+    let gameLoop;
 
+    const scoreBoard = document.getElementById("score");
+    const restartBtn = document.getElementById("restartBtn");
+
+    // Show best score under scoreboard
+    const bestBoard = document.createElement("div");
+    bestBoard.style.marginTop = "5px";
+    bestBoard.innerText = "🏆 Best Score: " + bestScore;
+    scoreBoard.insertAdjacentElement("afterend", bestBoard);
+
+    // Controls (PC)
     document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft" && player.x > 0) player.x -= 20;
-      if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 20;
+      if (e.key === "ArrowLeft" && player.x > 0) player.x -= 15;
+      if (e.key === "ArrowRight" && player.x < canvas.width - player.width) player.x += 15;
     });
 
+    // Mobile Controls
+    const leftBtn = document.createElement("button");
+    const rightBtn = document.createElement("button");
+    leftBtn.innerText = "⬅️";
+    rightBtn.innerText = "➡️";
+    leftBtn.style.cssText = rightBtn.style.cssText = `
+      position: fixed; bottom: 20px; width: 60px; height: 60px;
+      background: rgba(0,0,0,0.6); color: white; font-size: 24px;
+      border: 2px solid cyan; border-radius: 50%; z-index: 999;
+    `;
+    leftBtn.style.left = "20px";
+    rightBtn.style.right = "20px";
+    document.body.appendChild(leftBtn);
+    document.body.appendChild(rightBtn);
+
+    leftBtn.addEventListener("click", () => {
+      if (player.x > 0) player.x -= 15;
+    });
+    rightBtn.addEventListener("click", () => {
+      if (player.x < canvas.width - player.width) player.x += 15;
+    });
+
+    // Restart button
+    restartBtn.addEventListener("click", () => {
+      resetGame();
+    });
+
+    // Spawn blocks
     function spawnBlock() {
       const x = Math.floor(Math.random() * (canvas.width - 40));
       blocks.push({ x, y: 0, width: 40, height: 40, color: "red" });
@@ -160,31 +191,64 @@
       if (gameOver) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Player
       ctx.fillStyle = player.color;
       ctx.fillRect(player.x, player.y, player.width, player.height);
 
+      // Blocks
       for (let i = 0; i < blocks.length; i++) {
         const b = blocks[i];
         b.y += speed;
         ctx.fillStyle = b.color;
         ctx.fillRect(b.x, b.y, b.width, b.height);
 
-        if (player.x < b.x + b.width && player.x + player.width > b.x &&
-            player.y < b.y + b.height && player.y + player.height > b.y) {
-          gameOver = true;
-          document.getElementById("score").innerText = "💀 Game Over! Final Score: " + score;
+        // Collision
+        if (
+          player.x < b.x + b.width &&
+          player.x + player.width > b.x &&
+          player.y < b.y + b.height &&
+          player.y + player.height > b.y
+        ) {
+          endGame();
         }
       }
 
+      // Difficulty
       score++;
-      if (score % 200 === 0) speed++;
+      if (score % 200 === 0) speed += 1;
       if (score % 300 === 0) spawnBlock();
 
-      document.getElementById("score").innerText = "Score: " + score;
+      scoreBoard.innerText = "🎮 Score: " + score;
       requestAnimationFrame(update);
     }
 
-    setInterval(spawnBlock, 700);
+    function endGame() {
+      gameOver = true;
+      clearInterval(gameLoop);
+      scoreBoard.innerText = "💀 Game Over! Final Score: " + score;
+
+      if (score > bestScore) {
+        bestScore = score;
+        localStorage.setItem("bestScore", bestScore);
+        bestBoard.innerText = "🏆 Best Score: " + bestScore;
+      }
+
+      restartBtn.style.display = "inline-block";
+    }
+
+    function resetGame() {
+      blocks = [];
+      score = 0;
+      speed = 5;
+      gameOver = false;
+      restartBtn.style.display = "none";
+      scoreBoard.innerText = "🎮 Score: 0";
+      gameLoop = setInterval(spawnBlock, 700);
+      update();
+    }
+
+    // Start
+    gameLoop = setInterval(spawnBlock, 700);
     update();
   </script>
 </body>
