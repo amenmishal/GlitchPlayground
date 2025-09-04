@@ -1,225 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GlitchPlayground - Home</title>
-<style>
-  :root{
-    --text:#ffffff;
-    --muted:#c9c9c9;
-    --accent:#ff9d00;     /* neon orange */
-    --accent2:#00f0ff;    /* cyan */
-    --card:#121212cc;     /* glassy card */
-    --border:#2b2b2b;
-    --shadow:0 10px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.02);
-  }
-
-  /* Page base */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0; font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
-    background: radial-gradient(1000px 600px at 10% -10%, #5a00ff 0%, transparent 40%),
-                radial-gradient(900px 700px at 110% 0%, #00b3ff 0%, transparent 45%),
-                radial-gradient(900px 700px at 50% 120%, #ff2da5 0%, transparent 45%), #0a0a0a;
-    background-size: 300% 300%;
-    animation: gradientShift 22s ease-in-out infinite;
-    overflow-x:hidden;
-  }
-
-  /* Animated gradient */
-  @keyframes gradientShift{
-    0%{background-position: 0% 50%}
-    50%{background-position: 100% 50%}
-    100%{background-position: 0% 50%}
-  }
-
-  /* Particles layer */
-  #particles{
-    position:fixed; inset:0; z-index:-1; pointer-events:none;
-  }
-
-  /* Navbar */
-  .nav{
-    position: sticky; top:0; z-index:10;
-    backdrop-filter: blur(8px);
-    background: rgba(10,10,10,.55);
-    border-bottom: 1px solid rgba(255,255,255,.06);
-  }
-  .nav-inner{
-    max-width:1100px; margin:auto; padding:14px 20px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .logo{
-    font-weight:800; letter-spacing:.3px; font-size:1.15rem;
-    text-shadow: 0 0 12px rgba(255,157,0,.6);
-  }
-  .logo .rocket{ filter: drop-shadow(0 0 6px rgba(255,157,0,.8)); }
-  .links a{
-    color:var(--text); text-decoration:none; margin-left:18px; position:relative; font-weight:600;
-  }
-  .links a::after{
-    content:""; position:absolute; left:0; bottom:-6px; width:100%; height:2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
-    box-shadow:0 0 12px rgba(0,240,255,.6);
-  }
-  .links a:hover::after{ transform:scaleX(1); }
-
-  /* Layout */
-  .container{max-width:1100px; margin:0 auto; padding:28px 20px 60px;}
-  .hero{
-    margin-top:10px;
-    animation: fadeIn .8s ease-out both;
-  }
-  .hero h1{
-    font-size:clamp(2rem, 5vw, 3rem);
-    margin:0 0 8px;
-    text-shadow: 0 0 18px rgba(255,157,0,.55);
-  }
-  .hero p{color:var(--muted); margin:0 0 20px; font-size:1.05rem}
-
-  /* Button */
-  .btn{
-    display:inline-block; padding:10px 16px; border-radius:12px; font-weight:700;
-    color:#0a0a0a; background:linear-gradient(90deg, var(--accent), var(--accent2));
-    box-shadow:0 8px 24px rgba(0,240,255,.25), 0 0 20px rgba(255,157,0,.35);
-    text-decoration:none; transition: transform .15s ease, box-shadow .2s ease;
-  }
-  .btn:hover{ transform: translateY(-2px); box-shadow:0 14px 28px rgba(0,240,255,.35), 0 0 26px rgba(255,157,0,.55); }
-
-  /* Section titles */
-  h2.section-title{
-    margin:28px 0 10px; font-size:1.35rem; letter-spacing:.2px;
-    text-shadow: 0 0 10px rgba(0,240,255,.45);
-  }
-
-  /* Cards */
-  .card{
-    background:var(--card); border:1px solid rgba(255,255,255,.06);
-    border-radius:18px; padding:20px; box-shadow:var(--shadow);
-    display:flex; gap:14px; align-items:flex-start;
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-    margin:16px 0; animation: fadeInUp .6s ease both;
-  }
-  .card:hover{
-    transform: translateY(-4px);
-    background: #171717dd;
-    border-color: rgba(0,240,255,.35);
-    box-shadow: 0 14px 36px rgba(0,0,0,.5), 0 0 30px rgba(0,240,255,.18);
-  }
-  .icon{font-size:1.4rem; filter: drop-shadow(0 0 8px rgba(255,255,255,.25));}
-  .card h3{margin:2px 0 6px; font-size:1.2rem}
-  .card p{margin:0; color:var(--muted)}
-  .readmore{ margin-top:10px; display:inline-block; color:#fff; text-decoration:none; font-weight:700; }
-  .readmore span{
-    background:linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    text-shadow: 0 0 12px rgba(0,240,255,.4);
-  }
-
-  /* Footer */
-  footer{
-    border-top:1px solid rgba(255,255,255,.06);
-    backdrop-filter: blur(6px);
-    background: rgba(10,10,10,.55);
-    color:#cfcfcf; text-align:center; padding:18px 12px;
-  }
-
-  /* Animations */
-  @keyframes fadeIn{from{opacity:0; transform: translateY(6px)}to{opacity:1; transform:none}}
-  @keyframes fadeInUp{from{opacity:0; transform: translateY(10px)}to{opacity:1; transform:none}}
-
-  /* Respect reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlitchPlayground - GTA Hub</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .card {
+      background: rgba(0,0,0,0.85);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(0,255,255,0.8);
+    }
+    footer {
+      background: rgba(0,0,0,0.6);
+      padding: 15px;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- particles background -->
-<div id="particles"></div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand text-info" href="index.html">GlitchPlayground</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="game.html">Glitches</a></li>
+        <li class="nav-item"><a class="nav-link" href="news.html">GTA 6 News</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<!-- NAV -->
-<div class="nav">
-  <div class="nav-inner">
-    <div class="logo">GlitchPlayground <span class="rocket">🚀</span></div>
-    <div class="links">
-      <a href="index.html">Home</a>
-      <a href="news.html">News</a>
-      <a href="game.html">Games</a>
-      <a href="contact.html">Contact</a>
+<!-- Hero -->
+<section class="hero">
+  <h1 class="display-4">🚨 GTA 5 Glitch Hub</h1>
+  <p class="lead">Unlimited money, car dupes, god mode & more!</p>
+</section>
+
+<!-- Glitch Cards -->
+<div class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="card p-3">
+        <h5>💰 Unlimited Money Glitch</h5>
+        <p>Step-by-step guide on how to duplicate cash without bans.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card p-3">
+        <h5>🚗 Car Duplication Glitch</h5>
+        <p>Duplicate cars fast and sell them for millions in GTA Online.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card p-3">
+        <h5>🛡️ God Mode Trick</h5>
+        <p>Become invincible in both GTA Online & Story Mode.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<main class="container">
-  <section class="hero">
-    <h1>Welcome to <span style="color:var(--accent)">GlitchPlayground</span></h1>
-    <p>Your hub for GTA 5 glitches, GTA 6 leaks, and fun mini-games — now with neon vibes ✨</p>
-    <a class="btn" href="news.html">View All News & Leaks →</a>
-  </section>
-
-  <h2 class="section-title">Latest News</h2>
-
-  <!-- Card 1 -->
-  <article class="card" style="animation-delay:.05s;">
-    <div class="icon">🔥</div>
-    <div>
-      <h3>GTA 6 New Trailer Leak</h3>
-      <p>Vice City nightlife, jet skis and smarter cops teased in a new clip doing the rounds…</p>
-      <a class="readmore" href="news.html"><span>Read more →</span></a>
-    </div>
-  </article>
-
-  <!-- Card 2 -->
-  <article class="card" style="animation-delay:.15s;">
-    <div class="icon">💰</div>
-    <div>
-      <h3>Unlimited Money Glitch Found</h3>
-      <p>Players discovered a method to duplicate heist rewards. Use with caution to avoid bans.</p>
-      <a class="readmore" href="news.html"><span>Read more →</span></a>
-    </div>
-  </article>
-</main>
-
+<!-- Footer -->
 <footer>
-  © 2025 GlitchPlayground • Made with ❤️ on GitHub Pages
+  <p>© 2025 GlitchPlayground | GTA 5 Glitches & GTA 6 News</p>
 </footer>
 
-<!-- Particles.js CDN (tiny) -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-  // Fallback guard
-  if (window.particlesJS) {
-    particlesJS('particles', {
-      "particles": {
-        "number": { "value": 70, "density": { "enable": true, "value_area": 900 } },
-        "color": { "value": ["#ff9d00","#00f0ff","#ff2da5"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.6, "random": true },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 140, "color": "#7bd7ff", "opacity": 0.25, "width": 1 },
-        "move": { "enable": true, "speed": 1.1, "direction": "none", "out_mode": "out" }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" },
-          "resize": true
-        },
-        "modes": {
-          "repulse": { "distance": 120, "duration": 0.3 },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
-    });
-  }
-</script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
