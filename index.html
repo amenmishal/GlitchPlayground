@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GlitchPlayground 🚀</title>
   <style>
     /* Background */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
-      background: linear-gradient(-45deg, #0f0f0f, #1a0033, #003366, #330033);
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a40, #2b0033, #0d1b2a);
       background-size: 400% 400%;
       animation: gradientBG 12s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
@@ -22,119 +25,127 @@
 
     /* Navbar */
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
+      padding: 15px;
+      text-align: center;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
     }
     nav a {
       color: white;
-      text-decoration: none;
       margin: 0 15px;
+      text-decoration: none;
       font-weight: bold;
       transition: 0.3s;
     }
     nav a:hover {
-      color: cyan;
-      text-shadow: 0 0 10px cyan;
+      color: #ff00ff;
+      text-shadow: 0 0 8px #ff00ff;
     }
 
-    /* Hero */
-    header {
+    /* Hero Section */
+    .hero {
       text-align: center;
       padding: 60px 20px;
     }
-    header h1 {
+    .hero h1 {
       font-size: 2.5em;
-      text-shadow: 0 0 15px orange;
+      color: #ff9900;
+      text-shadow: 0 0 12px #ff9900;
     }
-    header p {
+    .hero p {
       font-size: 1.2em;
       color: #ddd;
     }
 
-    /* Cards */
-    .card-container {
+    /* News Preview */
+    .news-preview {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 30px;
+      flex: 1;
     }
     .card {
       background: rgba(255,255,255,0.05);
+      border-radius: 12px;
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.3);
-      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px cyan;
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00ffff;
     }
-    .card h3 {
+    .card h2 {
       margin-top: 0;
-      color: cyan;
+      color: #00ffff;
+      text-shadow: 0 0 6px #00ffff;
+    }
+    .card p {
+      color: #ccc;
+    }
+    .more-btn {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 12px 20px;
+      background: #ff00ff;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+      max-width: 200px;
+    }
+    .more-btn:hover {
+      background: #00ffff;
+      box-shadow: 0 0 15px #00ffff;
     }
 
     /* Footer */
     footer {
+      background: rgba(0,0,0,0.8);
       text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.6);
-      margin-top: 30px;
+      padding: 15px;
     }
 
-    /* Mobile tweaks */
-    @media (max-width: 768px) {
-      nav { flex-direction: column; }
-      nav a { margin: 10px 0; }
+    /* Mobile */
+    @media(max-width: 600px) {
+      nav a { display: block; margin: 10px 0; }
+      .hero h1 { font-size: 1.8em; }
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <nav>
-    <div class="logo">🎮 GlitchPlayground</div>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="news.html">News</a>
-      <a href="game.html">Glitches & Game</a>
-      <a href="contact.html">Contact</a>
-    </div>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="game.html">Glitches & Game</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- Hero Section -->
-  <header>
-    <h1>🚀 Welcome to GlitchPlayground</h1>
-    <p>Your hub for GTA 5 glitches & GTA 6 leaks</p>
-  </header>
+  <div class="hero">
+    <h1>Welcome to GlitchPlayground 🚀</h1>
+    <p>Your #1 hub for GTA 6 leaks and GTA 5 glitches.</p>
+  </div>
 
-  <!-- Latest Cards -->
-  <section>
-    <h2 style="text-align:center; text-shadow:0 0 10px cyan;">🔥 Latest Highlights</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>💰 Unlimited Money Trick</h3>
-        <p>Replay heists & stack millions — safe methods explained step by step.</p>
-      </div>
-      <div class="card">
-        <h3>🚀 GTA 6 Leak</h3>
-        <p>Insiders confirm Vice City is back with neon vibes & jet skis!</p>
-      </div>
-      <div class="card">
-        <h3>👻 Ghost Car Glitch</h3>
-        <p>Make your vehicle invisible online — troll lobbies with style.</p>
-      </div>
+  <div class="news-preview">
+    <div class="card">
+      <h2>🚀 GTA 6 Release Rumor</h2>
+      <p>Insiders hint GTA 6 is set to launch in 2025. Hype is building fast!</p>
     </div>
-  </section>
+    <div class="card">
+      <h2>🔥 Vice City Expansion</h2>
+      <p>Reports suggest Vice City plus new islands — biggest GTA map ever.</p>
+    </div>
+  </div>
 
-  <!-- Footer -->
+  <a class="more-btn" href="news.html">See All News →</a>
+
   <footer>
-    <p>© 2025 GlitchPlayground 🚀 – GTA 5 & GTA 6 Hub</p>
+    <p>© 2025 GlitchPlayground 🚀</p>
   </footer>
 </body>
 </html>
