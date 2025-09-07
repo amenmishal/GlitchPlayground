@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tips & Tricks — GlitchPlayground 🚀</title>
+  <style>
+    :root{
+      --bg1:#0f0f0f; --bg2:#1a0033; --accent:#00ffff; --hot:#ff0080;
+      --card-bg: rgba(255,255,255,0.03);
+    }
+    html,body{height:100%;margin:0}
+    body{
+      margin:0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color:#fff;
+      background: linear-gradient(-45deg,var(--bg1),var(--bg2),#001a33,#330033);
+      background-size:400% 400%;
+      animation: grad 12s linear infinite;
+      display:flex;
+      flex-direction:column;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    @keyframes grad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* Header / Navbar */
+    .site-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 20px;background:rgba(0,0,0,0.6);
+      border-bottom:2px solid rgba(255,255,255,0.04);position:sticky;top:0;z-index:1000;
+    }
+    .logo{
+      display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--hot);font-weight:800;
+      cursor:pointer;
+    }
+    .logo .title { font-size:20px; text-shadow:0 0 8px #ff00ff; }
+    nav a { color:#fff; margin-left:14px; text-decoration:none; font-weight:600; }
+    nav a:hover { color: var(--accent); text-shadow:0 0 8px var(--accent); }
+
+    /* Container */
+    main { max-width:1100px; margin:24px auto; padding:18px; width:95%; flex:1; }
+    .panel { background: rgba(0,0,0,0.55); padding:18px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.6); margin-bottom:18px; }
+
+    h1 { margin:0 0 12px 0; color:var(--accent); text-shadow:0 0 10px var(--accent); font-size:1.8rem; }
+    h2 { margin:0 0 10px 0; color:var(--accent) }
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:14px; }
+
+    .card {
+      background: var(--card-bg);
+      padding:14px; border-radius:12px; box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      transition: transform .18s ease, box-shadow .18s ease;
+      position:relative;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.7); }
+    .emoji { font-size:36px; display:block; margin-bottom:8px; text-shadow:0 0 12px rgba(0,255,255,0.08); }
+    ol, ul { margin:8px 0 0 18px; color:#d7e6ea; }
+    p.muted { color:#c6d7e0; margin:0 }
+
+    /* Save tip button */
+    .save-btn {
+      display:inline-block; padding:8px 12px; border-radius:8px; background:var(--hot); color:white; border:none; font-weight:700; cursor:pointer;
+      margin-top:12px;
+    }
+    .save-btn.ghost { background: transparent; border:1px solid rgba(255,255,255,0.06); color:#fff; }
+
+    /* Easter egg panel (hidden) */
+    #easterEgg {
+      display:none; padding:16px; border-radius:12px; background: linear-gradient(135deg, rgba(255,0,128,0.06), rgba(0,255,255,0.03));
+      text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.65); margin-bottom:18px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    #easterEgg .secret-link {
+      display:inline-block; margin-top:10px; padding:10px 16px; border-radius:10px; background:var(--accent); color:#001; font-weight:800; text-decoration:none;
+      box-shadow:0 6px 20px rgba(0,255,255,0.08);
+    }
+
+    /* Saved tip display */
+    .saved-tip { background: rgba(0,0,0,0.45); padding:12px; border-radius:10px; margin-bottom:14px; color:#dff; }
+
+    /* Footer */
+    footer { background: rgba(0,0,0,0.6); padding:12px 18px; text-align:center; color:#bfcbd3; border-top:2px solid rgba(255,255,255,0.04); }
+
+    /* Responsive tweaks */
+    @media (max-width:520px){
+      h1{font-size:1.3rem}
+      .emoji{font-size:34px}
+      .save-btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" id="siteLogo" href="index.html" title="GlitchPlayground">
+      <svg width="36" height="36" viewBox="0 0 24 24" style="filter:drop-shadow(0 0 6px #ff00ff)">
+        <circle cx="12" cy="12" r="10" fill="#0d0d0d" stroke="#ff0080" stroke-width="1.6"></circle>
+        <text x="12" y="16" font-size="12" text-anchor="middle" fill="#ff0080" font-family="Arial">GP</text>
+      </svg>
+      <span class="title">GlitchPlayground 🚀</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="game.html">Game</a>
+      <a href="tips.html">Tips</a>
+      <a href="stories.html">Stories</a>
+      <a href="stats.html">Stats</a>
+      <a href="minigames.html">Mini Games</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="secretPanel" class="panel" style="display:none">
+      <!-- Easter egg revealed here -->
+    </div>
+
+    <div class="panel">
+      <h1>Tips & Tricks</h1>
+      <p class="muted">Useful, safe, and practical tips for GTA, PC performance, safe modding, and controls. These are educational — don't use them to break rules or exploit others.</p>
+    </div>
+
+    <!-- Easter egg hidden box (reveals on Konami / logo taps) -->
+    <div id="easterEgg" class="panel" role="region" aria-hidden="true">
+      <h2>🎉 Easter Egg Unlocked!</h2>
+      <p>Secret unlocked — nice work. Here's a hidden tip and a special link to an experimental mini-games page.</p>
+      <a class="secret-link" id="secretLink" href="minigames.html?secret=1">Open Secret Mini Games →</a>
+    </div>
+
+    <!-- Saved favorite tip -->
+    <div id="savedTipBox" class="panel" style="display:none">
+      <div class="saved-tip"><strong>Saved Tip:</strong> <span id="savedTipText"></span> <button id="clearSaved" class="save-btn ghost">Clear</button></div>
+    </div>
+
+    <section class="panel">
+      <h2>GTA & Game Tips</h2>
+      <div class="grid">
+        <div class="card" id="tip_gta1">
+          <div class="emoji">🎯</div>
+          <h3>Improve Aim & Vehicle Control</h3>
+          <ol>
+            <li>Use aim-assist options for controller players (if you prefer) — tweak sensitivity in settings.</li>
+            <li>For precision shooting, lower vertical sensitivity slightly and practice in a quiet session.</li>
+            <li>When driving fast, brake before turning and use handbrake/slide to pivot instead of full speed cornering.</li>
+          </ol>
+          <button class="save-btn" data-tipid="tip_gta1">Save this tip</button>
+        </div>
+
+        <div class="card" id="tip_gta2">
+          <div class="emoji">🛡️</div>
+          <h3>Stay Safe in Online Sessions</h3>
+          <ol>
+            <li>Avoid sharing account details or accepting invites from strangers.</li>
+            <li>Use a secondary character/account for risky sessions or testing glitches to protect your main account.</li>
+            <li>Report and block hostile players, and use passive-mode options when available.</li>
+          </ol>
+          <button class="save-btn" data-tipid="tip_gta2">Save this tip</button>
+        </div>
+
+        <div class="card" id="tip_pc1">
+          <div class="emoji">⚡</div>
+          <h3>PC Performance Boost</h3>
+          <ol>
+            <li>Keep GPU drivers updated (NVIDIA/AMD) and use manufacturer control panel to prefer performance for the game profile.</li>
+            <li>Lower CPU-heavy settings (population density, shadows) before lowering texture resolution.</li>
+            <li>Use an SSD for faster loads; close background apps while gaming.</li>
+          </ol>
+          <button class="save-btn" data-tipid="tip_pc1">Save this tip</button>
+        </div>
+
+        <div class="card" id="tip_mods">
+          <div class="emoji">🧩</div>
+          <h3>Safe Modding Practices</h3>
+          <ol>
+            <li>Only download mods from trusted communities (GTAGarage, Nexus where applicable) and read comments/reviews.</li>
+            <li>Use offline/single-player mode for experimental mods — do not use online to avoid bans.</li>
+            <li>Keep backups of your game files and savegames before installing mods.</li>
+          </ol>
+          <button class="save-btn" data-tipid="tip_mods">Save this tip</button>
+        </div>
+
+        <div class="card" id="tip_controls">
+          <div class="emoji">🎮</div>
+          <h3>Controller & Mobile Tips</h3>
+          <ol>
+            <li>For controllers: remap deadzones and tweak sensitivity per game for smoother input.</li>
+            <li>Mobile: prefer landscape mode, enable on-screen buttons that are large/touch-friendly.</li>
+            <li>Use a Bluetooth controller on mobile for better control — avoid touch-only for precision gameplay.</li>
+          </ol>
+          <button class="save-btn" data-tipid="tip_controls">Save this tip</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Do's & Don'ts</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Do</h3>
+          <ul>
+            <li>Protect your account with 2FA and strong passwords.</li>
+            <li>Test risky actions on a spare account first.</li>
+            <li>Keep your system updated and use antivirus if needed.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Don't</h3>
+          <ul>
+            <li>Don't share account info or buy suspicious services.</li>
+            <li>Don't paste real onion links or illegal content into shared sections of your site.</li>
+            <li>Don't run unknown executables from untrusted sources.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 GlitchPlayground 🚀 — Tips are for educational purposes only.
+  </footer>
+
+  <script>
+    // ---------- Easter egg (Konami + logo taps) ----------
+    (function(){
+      const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+      let ptr = 0;
+      const egg = document.getElementById('easterEgg');
+      const secretPanel = document.getElementById('secretPanel');
+
+      // keyboard listener
+      window.addEventListener('keydown', (e) => {
+        const key = (e.key || "").toLowerCase();
+        const expected = konami[ptr];
+        // compare case-insensitively for letters
+        if ((expected.length === 1 && key === expected) || (expected.length > 1 && e.key === expected)) {
+          ptr++;
+          if (ptr === konami.length) { revealEgg(); ptr = 0; }
+        } else {
+          ptr = (e.key === konami[0]) ? 1 : 0;
+        }
+      });
+
+      // logo taps for mobile: 7 quick taps
+      const logo = document.getElementById('siteLogo');
+      let tapCount = 0, tapTimer = null;
+      logo.addEventListener('click', (e) => {
+        tapCount++;
+        if (tapTimer) clearTimeout(tapTimer);
+        tapTimer = setTimeout(()=>{ tapCount = 0; }, 900);
+        if (tapCount >= 7){ revealEgg(); tapCount = 0; }
+      });
+
+      function revealEgg(){
+        egg.style.display = 'block';
+        egg.setAttribute('aria-hidden','false');
+        // animate secretPanel too
+        secretPanel.style.display = 'block';
+        secretPanel.innerHTML = '<div style="text-align:center;color:#ccefff"><strong>Secret unlocked:</strong> Keep your skills sharp — bonus mini-games unlocked in the Mini Games hub.</div>';
+        // small flash animation
+        egg.style.opacity = 0; egg.style.transition = 'opacity .35s ease'; requestAnimationFrame(()=>egg.style.opacity = 1);
+      }
+    })();
+
+    // ---------- Save tip to localStorage ----------
+    (function(){
+      const STORAGE_KEY = 'gp_saved_tip_v1';
+      const savedBox = document.getElementById('savedTipBox');
+      const savedText = document.getElementById('savedTipText');
+      const clearSavedBtn = document.getElementById('clearSaved');
+
+      function loadSaved(){
+        try {
+          const id = localStorage.getItem(STORAGE_KEY);
+          if (!id) { savedBox.style.display = 'none'; return; }
+          const node = document.getElementById(id);
+          if (!node) { localStorage.removeItem(STORAGE_KEY); savedBox.style.display = 'none'; return; }
+          const title = node.querySelector('h3') ? node.querySelector('h3').innerText : 'Saved tip';
+          savedText.textContent = title;
+          savedBox.style.display = 'block';
+        } catch(e){ console.warn('loadSaved error', e); savedBox.style.display = 'none'; }
+      }
+
+      loadSaved();
+      document.querySelectorAll('.save-btn').forEach(btn=>{
+        btn.addEventListener('click', (ev)=>{
+          const id = btn.dataset.tipid;
+          if (!id) return;
+          localStorage.setItem(STORAGE_KEY, id);
+          loadSaved();
+          btn.innerText = 'Saved ✓';
+          setTimeout(()=>btn.innerText = 'Save this tip', 1200);
+        });
+      });
+
+      clearSavedBtn && clearSavedBtn.addEventListener('click', ()=>{
+        localStorage.removeItem(STORAGE_KEY);
+        loadSaved();
+      });
+    })();
+
+    // ---------- Simple sanity checks (avoid missing elements) ----------
+    (function(){
+      // check required elements exist
+      const required = ['easterEgg','siteLogo','savedTipBox'];
+      required.forEach(id=>{
+        if (!document.getElementById(id) && id !== 'easterEgg'){
+          console.warn('Missing element:', id);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
