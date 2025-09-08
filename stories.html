@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories | GlitchPlayground 🚀</title>
+  <style>
+    /* Background animation (same as other pages) */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a40, #2b0b30, #0f2027);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    nav a:hover {
+      color: #ff00ff;
+      text-shadow: 0 0 8px #ff00ff;
+    }
+
+    /* Title */
+    .title {
+      text-align: center;
+      margin: 30px 10px;
+      font-size: 2.5rem;
+      color: #ff6600;
+      text-shadow: 0 0 12px #ff6600;
+    }
+
+    /* Story cards */
+    .stories-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .story-card {
+      background: rgba(0,0,0,0.75);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .story-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 18px #00ffff;
+    }
+    .story-card h2 {
+      color: #00ffff;
+      margin-top: 0;
+    }
+    .story-card p {
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      background: rgba(0,0,0,0.6);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">🚀 GlitchPlayground</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="game.html">Games</a>
+      <a href="stories.html">Stories</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Page Title -->
+  <h1 class="title">🕹 Player Stories & Community Tales</h1>
+
+  <!-- Stories -->
+  <div class="stories-container">
+    <div class="story-card">
+      <h2>🚗 The Crazy Car Flip</h2>
+      <p>I once used a GTA 5 ramp glitch that launched my car so high, it landed in the airport parking lot across the map! My friends thought I was hacking 😂</p>
+    </div>
+    <div class="story-card">
+      <h2>👻 Haunted Lobby</h2>
+      <p>During a late-night GTA Online session, lights flickered in Los Santos, and NPCs acted strangely. Felt like Rockstar left a hidden ghost Easter egg...</p>
+    </div>
+    <div class="story-card">
+      <h2>💸 Unlimited Money (Almost)</h2>
+      <p>Tried a money glitch in story mode that broke my save file. Lesson learned: back up your game before experimenting! 🔥</p>
+    </div>
+    <div class="story-card">
+      <h2>🚀 Bike to Space</h2>
+      <p>With just the right ramp glitch, I sent a Sanchez bike flying so high, the skybox glitched and stars appeared. Felt like GTA turned into NASA! 🌌</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 GlitchPlayground 🚀 | All Rights Reserved
+  </footer>
+</body>
+</html>
+
